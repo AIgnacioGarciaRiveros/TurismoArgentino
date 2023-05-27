@@ -1,0 +1,17 @@
+TIPO		ATRACCIONES							TIPODEPROMOCION
+AVENTURA	Trekking,Rafting,Senderismo										Absoluta
+AVENTURA	Safari,Parapente,PescaDeportiva									Porcentual
+PAISAJE		CerroCatedral,LosCardones,RutaSieteLagos						Bonificada
+PAISAJE		ObservatorioGastronomico,Caminito,CerroCatedral					Bonificada
+AVENTURA	Esqui,Trekking,ParqueAereo										Porcentual
+AVENTURA	Espeleologia,PescaDeportiva,Parapente							Absoluta
+AVENTURA	BuceoMarino,Rafting,Parapente									Porcentual
+PAISAJE		CataratasDelIguazu,VallesCalchaquies,AvistamientoBallenas		Bonificada
+PAISAJE		AvistamientoAves,Caminito,LosCardones							Absoluta
+PAISAJE		RutaSieteLagos,QuebradaDeHumahuaca,ObservatorioGastronomico		Porcentual
+DEGUSTACION	RutaDelVino,TafiDelValle,CataDeChocolate						Bonificada
+DEGUSTACION	CerveceriaArtesanal,TourGastronomico,QueseriaArtesanal			Bonificada
+DEGUSTACION	FabricaFort,Gastronomia,ColoniaCaroya							Porcentual
+DEGUSTACION	BodegasChandon,CerveceriaArtesanal,RutaDelVino					Absoluta
+DEGUSTACION	QueseriaArtesanal,Gastronomia,CataDeChocolate					Absoluta
+				
