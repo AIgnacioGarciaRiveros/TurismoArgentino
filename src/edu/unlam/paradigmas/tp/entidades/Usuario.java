@@ -3,6 +3,7 @@ package edu.unlam.paradigmas.tp.entidades;
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 
 public class Usuario {
+	
 	private String nombre;
 	private double presupuesto;
 	private double tiempoDisponible;
@@ -16,7 +17,6 @@ public class Usuario {
 	}
 
 	public Usuario() {
-
 	}
 
 	public String getNombre() {
@@ -54,7 +54,8 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", presupuesto=" + presupuesto + ", tiempoDisponible=" + tiempoDisponible
-				+ "]";
+				+ ", atraccionFavorita=" + atraccionFavorita + "]\n";
 	}
+
 
 }

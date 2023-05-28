@@ -3,6 +3,13 @@ package edu.unlam.paradigmas.tp.entidades;
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 
 public class Atraccion {
+
+	@Override
+	public String toString() {
+		return "[nombre=" + nombre + ", precio=" + precio + ", tiempo=" + tiempo + ", cupoDiario="
+				+ cupoDiario + ", tipo=" + tipo + "]\n";
+	}
+
 	private String nombre;
 	private double precio;
 	private double tiempo;

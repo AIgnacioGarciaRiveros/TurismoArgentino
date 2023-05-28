@@ -4,10 +4,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
+import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
+import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
+
 public class Archivo {
+
 	private String nombre;
 
 	public Archivo(String nombre) {
@@ -37,25 +45,113 @@ public class Archivo {
 		}
 	}
 
-	public int[] leerArchivo() {
+	public Map<String, Atraccion> leerArchivoAtraccion() {
+
 		Scanner scanner = null;
-		int[] datos = null;
+		Map<String, Atraccion> atracciones = new HashMap<>();
+
 		try {
-			File file = new File("casos de prueba/edu.unlam.paradigmas.entradasalida.ej01/in/" + this.nombre + ".in");
+			File file = new File("archivos/" + this.nombre + ".in");
+
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
-			int cant = scanner.nextInt();
-			datos = new int[cant];
-			for (int i = 0; i < cant; i++) {
-				int n = scanner.nextInt();
-				datos[i] = n;
+			scanner.nextLine();
+
+			while (scanner.hasNext()) {
+				String nombreAtraccion = scanner.next();
+				atracciones.put(nombreAtraccion, new Atraccion(nombreAtraccion, scanner.nextDouble(),
+						scanner.nextDouble(), scanner.nextInt(), TipoDeAtraccion.valueOf(scanner.next())));
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			scanner.close();
 		}
-		return datos;
+		return atracciones;
+	}
+
+	public List<Promocion> leerArchivoPromocion(Map<String, Atraccion> atracciones) {
+
+		Scanner scanner = null;
+		List<Promocion> promociones = new ArrayList<>();
+
+		try {
+			File file = new File("archivos/" + this.nombre + ".in");
+
+			scanner = new Scanner(file);
+			scanner.useLocale(Locale.ENGLISH);
+
+			scanner.nextLine();
+
+			while (scanner.hasNext()) {
+
+				TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(scanner.next());
+				String[] nombresAtracciones = scanner.next().split(",");
+			
+				Atraccion[] atraccionesPromocion = new Atraccion[3];
+
+				for (int i = 0; i < nombresAtracciones.length; i++) {
+					Atraccion atraccionObtenida = atracciones.get(nombresAtracciones[i]);
+					atraccionesPromocion[i] = atraccionObtenida;
+				}
+
+				//TipoDePromocion tipoDePromocion = TipoDePromocion.ABSOLUTA;
+				//System.out.println(scanner.next());
+
+				TipoDePromocion tipoDePromocion = TipoDePromocion.valueOf(scanner.next());
+
+				
+				switch (tipoDePromocion) {
+				case ABSOLUTA:
+					promociones.add(new Absoluta(tipoDeAtraccion, atraccionesPromocion, tipoDePromocion));
+					break;
+
+				case BONIFICADA:
+					promociones.add(new Bonificada(tipoDeAtraccion, atraccionesPromocion, tipoDePromocion));
+					break;
+
+				case PORCENTUAL:
+					promociones.add(new Porcentual(tipoDeAtraccion, atraccionesPromocion, tipoDePromocion));
+					break;
+
+				default:
+					break;
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scanner.close();
+		}
+		return promociones;
+	}
+
+	public List<Usuario> leerArchivoUsuario() {
+
+		Scanner scanner = null;
+		List<Usuario> usuarios = new ArrayList<>();
+
+		try {
+			File file = new File("archivos/" + this.nombre + ".in");
+
+			scanner = new Scanner(file);
+			scanner.useLocale(Locale.ENGLISH);
+
+			scanner.nextLine(); // Saco la linea de titulos
+
+			while (scanner.hasNext())
+				usuarios.add(new Usuario(scanner.next(), scanner.nextDouble(), scanner.nextDouble(),
+						TipoDeAtraccion.valueOf(scanner.next())));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scanner.close();
+		}
+		return usuarios;
 	}
 
 	public void guardarArchivo(int[] datos) {
@@ -81,4 +177,5 @@ public class Archivo {
 			}
 		}
 	}
+
 }
