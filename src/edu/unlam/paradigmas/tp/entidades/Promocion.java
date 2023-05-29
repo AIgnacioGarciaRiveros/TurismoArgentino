@@ -6,56 +6,55 @@ import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 
 public abstract class Promocion {
-	
+
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Atraccion[] atracciones;
 	private TipoDePromocion tipoDePromocion;
-	
-	//private double precioOriginal;
-	//private double precioConDescuento;
-	//private double duracion;
+
+	private double precioOriginal;
+	private double precioConDescuento;
+	private double duracion;
 
 	public Promocion(TipoDeAtraccion tipoDeAtraccion, Atraccion[] atracciones, TipoDePromocion tipoDePromocion) {
-		
+
 		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.atracciones = atracciones;
 		this.tipoDePromocion = tipoDePromocion;
-		
-		// this.precioOriginal = precioOriginal;
-		// this.precioConDescuento = precioConDescuento;
-		// this.duracion = duracion;
+
+		this.precioOriginal = calcularPrecioOriginalTotal(); // PREGUNTAR
+		this.precioConDescuento = calcularPrecioConDescuento(); // PREGUNTAR
+		this.duracion = calcularDuracionTotal(); // PREGUNTAR
 	}
 
-	public TipoDeAtraccion getTipoDeAtraccion() {
-		return tipoDeAtraccion;
+	protected double getPrecioOriginal() {
+		return this.precioOriginal;
+	}
+
+	protected abstract double calcularPrecioConDescuento();
+
+	protected double calcularPrecioOriginalTotal() {
+		double precioOriginalTotal = 0;
+		for (Atraccion atraccion : atracciones)
+			precioOriginalTotal += atraccion.getPrecio();
+		return precioOriginalTotal;
+	}
+
+	private double calcularDuracionTotal() {
+		double duracionTotal = 0;
+		for (Atraccion atraccion : atracciones)
+			duracionTotal += atraccion.getTiempo();
+		return duracionTotal;
 	}
 
 	public Atraccion[] getAtracciones() {
 		return atracciones;
 	}
 
-	public TipoDePromocion getTipoDePromocion() {
-		return tipoDePromocion;
-	}
-
-	public void setTipoDeAtraccion(TipoDeAtraccion tipoDeAtraccion) {
-		this.tipoDeAtraccion = tipoDeAtraccion;
-	}
-
-	public void setAtracciones(Atraccion[] atracciones) {
-		this.atracciones = atracciones;
-	}
-
 	@Override
 	public String toString() {
-		return "Promocion [tipoDeAtraccion=" + tipoDeAtraccion + ", atracciones=" + Arrays.toString(atracciones)
-				+ ", tipoDePromocion=" + tipoDePromocion + "]\n";
+		return "Tipo de atraccion: " + tipoDeAtraccion + "\t\tAtracciones: " + Arrays.toString(atracciones)
+				+ "\t\tTipo de promocion: " + tipoDePromocion + "\tPrecio orignal: " + precioOriginal
+				+ "\tPrecio con descuento: " + precioConDescuento + "\tDuracion: " + duracion;
 	}
-
-	public void setTipoDePromocion(TipoDePromocion tipoDePromocion) {
-		this.tipoDePromocion = tipoDePromocion;
-	}
-
-
 
 }

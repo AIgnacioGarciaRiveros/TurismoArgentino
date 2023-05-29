@@ -9,4 +9,19 @@ public class Porcentual extends Promocion {
 		super(tipoDeAtraccion, atracciones, tipoDePromocion);
 	}
 
+	@Override
+	protected double calcularPrecioConDescuento() {
+		
+		double precioTotal = getPrecioOriginal();
+		
+		if(precioTotal > 5000)
+			return precioTotal - precioTotal * 0.4;
+		else if (precioTotal > 4000)
+			return precioTotal - precioTotal * 0.3;
+		else if (precioTotal > 3000)
+			return precioTotal - precioTotal * 0.2;
+		else
+			return precioTotal - precioTotal * 0.1;
+	}
+
 }

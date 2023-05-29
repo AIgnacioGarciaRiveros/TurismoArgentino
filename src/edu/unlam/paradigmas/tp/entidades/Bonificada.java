@@ -9,4 +9,17 @@ public class Bonificada extends Promocion {
 		super(tipoDeAtraccion, atracciones, tipoDePromocion);
 	}
 
+	@Override
+	protected double calcularPrecioConDescuento() {
+
+		Atraccion[] atracciones = getAtracciones();
+		double precioMinimo = atracciones[0].getPrecio();
+
+		for (int i = 1; i < atracciones.length; i++) {
+			if (atracciones[i].getPrecio() < precioMinimo)
+				precioMinimo = atracciones[i].getPrecio();
+		}
+		
+		return getPrecioOriginal() - precioMinimo;
+	}
 }

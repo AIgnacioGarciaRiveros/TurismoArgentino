@@ -5,13 +5,15 @@ import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 
 public class Absoluta extends Promocion {
 
-	private double precioFijo;
+	private static final double PRECIO_FIJO = 400;
 	
 	public Absoluta(TipoDeAtraccion tipoDeAtraccion, Atraccion[] atracciones, TipoDePromocion tipoDePromocion) {
 		super(tipoDeAtraccion, atracciones, tipoDePromocion);
 	}
 
-	public double getPrecio() {
-		return precioFijo;
+	@Override
+	protected double calcularPrecioConDescuento() {
+		return getPrecioOriginal() - PRECIO_FIJO;
 	}
+
 }

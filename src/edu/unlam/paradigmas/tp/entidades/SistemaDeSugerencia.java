@@ -14,27 +14,34 @@ public class SistemaDeSugerencia {
 		
 		usuarios = archivo.leerArchivoUsuario();
 		
-		System.out.println("\n\n============ ARCHIVO USUARIOS ============\n\n");
-		System.out.println(usuarios);
-		System.out.println("\n\n====================================\n\n");
+		System.out.println("============ ARCHIVO USUARIOS ============");
+		for (Usuario usuario : usuarios)
+			System.out.println(usuario);
+		System.out.println("====================================");
 		
 		Archivo archivoAtraccion = new Archivo("Atracciones");
 		Map<String, Atraccion> atracciones = new HashMap<>();
 		
 		atracciones = archivoAtraccion.leerArchivoAtraccion();
 		
-		System.out.println("\n\n============ ARCHIVO ATRACCIONES ============\n\n");
-		System.out.println(atracciones);
-		System.out.println("\n\n====================================\n\n");
+		System.out.println("============ ARCHIVO ATRACCIONES ============");
+		for( Map.Entry<String, Atraccion> entry : atracciones.entrySet() )
+		    System.out.println(entry.getValue());
+		System.out.println("====================================");
 		
 		Archivo archivoPromocion = new Archivo("Promociones");
 		List<Promocion> promociones = new ArrayList<>();
 		
 		promociones = archivoPromocion.leerArchivoPromocion(atracciones);
 		
-		System.out.println("\n\n============ ARCHIVO PROMOCION ============\n\n");
-		System.out.println(promociones);
-		System.out.println("\n\n====================================\n\n");
+		System.out.println("============ ARCHIVO PROMOCION ============");
+		for (Promocion promocion : promociones) {
+			System.out.println(promocion);
+		}
+		System.out.println("====================================");
+		
+		
+		
 	}
 	
 }

@@ -4,12 +4,6 @@ import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 
 public class Atraccion {
 
-	@Override
-	public String toString() {
-		return "[nombre=" + nombre + ", precio=" + precio + ", tiempo=" + tiempo + ", cupoDiario="
-				+ cupoDiario + ", tipo=" + tipo + "]\n";
-	}
-
 	private String nombre;
 	private double precio;
 	private double tiempo;
@@ -62,6 +56,12 @@ public class Atraccion {
 
 	public void setTipo(TipoDeAtraccion tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre: " + String.format("%-30s", nombre) + "Precio: $" + String.format("%-15.2f", precio)
+				+ "Tiempo: " + String.format("%-10.2f", tiempo) + "Cupo Diario: " + String.format("%-10d", cupoDiario) + "Tipo: " + String.format("%-15s",tipo);
 	}
 
 }
