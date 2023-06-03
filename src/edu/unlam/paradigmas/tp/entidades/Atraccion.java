@@ -1,5 +1,7 @@
 package edu.unlam.paradigmas.tp.entidades;
 
+import java.util.Objects;
+
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 
 public class Atraccion {
@@ -62,6 +64,25 @@ public class Atraccion {
 	public String toString() {
 		return "Nombre: " + String.format("%-30s", nombre) + "Precio: $" + String.format("%-15.2f", precio)
 				+ "Tiempo: " + String.format("%-10.2f", tiempo) + "Cupo Diario: " + String.format("%-10d", cupoDiario) + "Tipo: " + String.format("%-15s",tipo);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cupoDiario, nombre, precio, tiempo, tipo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atraccion other = (Atraccion) obj;
+		return cupoDiario == other.cupoDiario && Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
+				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo) && tipo == other.tipo;
 	}
 
 }

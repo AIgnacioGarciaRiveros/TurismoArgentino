@@ -89,19 +89,15 @@ public class Archivo {
 				TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(scanner.next());
 				String[] nombresAtracciones = scanner.next().split(",");
 			
-				Atraccion[] atraccionesPromocion = new Atraccion[3];
+				Atraccion[] atraccionesPromocion = new Atraccion[nombresAtracciones.length];
 
 				for (int i = 0; i < nombresAtracciones.length; i++) {
 					Atraccion atraccionObtenida = atracciones.get(nombresAtracciones[i]);
 					atraccionesPromocion[i] = atraccionObtenida;
 				}
 
-				//TipoDePromocion tipoDePromocion = TipoDePromocion.ABSOLUTA;
-				//System.out.println(scanner.next());
-
 				TipoDePromocion tipoDePromocion = TipoDePromocion.valueOf(scanner.next());
 
-				
 				switch (tipoDePromocion) {
 				case ABSOLUTA:
 					promociones.add(new Absoluta(tipoDeAtraccion, atraccionesPromocion, tipoDePromocion));
