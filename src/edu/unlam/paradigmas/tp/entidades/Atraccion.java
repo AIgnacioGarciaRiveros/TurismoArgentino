@@ -1,5 +1,6 @@
 package edu.unlam.paradigmas.tp.entidades;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
@@ -11,6 +12,11 @@ public class Atraccion {
 	private double tiempo;
 	private int cupoDiario;
 	private TipoDeAtraccion tipo;
+	private boolean estaDisponible;
+	
+	
+	public Atraccion() {
+	}
 
 	public Atraccion(String nombre, double precio, double tiempo, int cupoDiario, TipoDeAtraccion tipo) {
 		this.nombre = nombre;
@@ -18,6 +24,7 @@ public class Atraccion {
 		this.tiempo = tiempo;
 		this.cupoDiario = cupoDiario;
 		this.tipo = tipo;
+		this.estaDisponible = true;
 	}
 
 	public String getNombre() {
@@ -59,6 +66,15 @@ public class Atraccion {
 	public void setTipo(TipoDeAtraccion tipo) {
 		this.tipo = tipo;
 	}
+	
+	
+	public boolean getEstaDisponible() {
+		return estaDisponible;
+	}
+
+	public void setEstaDisponible(boolean estaDisponible) {
+		this.estaDisponible = estaDisponible;
+	}
 
 	@Override
 	public String toString() {
@@ -84,5 +100,7 @@ public class Atraccion {
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
 				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo) && tipo == other.tipo;
 	}
+
+	
 
 }

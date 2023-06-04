@@ -1,8 +1,8 @@
 NOMBRE					PRECIO		TIEMPO		CUPO	TIPO
 Trekking				500			3			5		AVENTURA
-Rafting					900			1			10		AVENTURA
+Rafting					1300		1			10		AVENTURA
 Senderismo				1300		5.5			6		AVENTURA
-Safari					1500		3.5			3		AVENTURA
+Safari					1300		3.5			3		AVENTURA
 Parapente				5000		2			2		AVENTURA
 Esqui					2300		4.2			7		AVENTURA
 BodegasChandon			4100		3			20		DEGUSTACION
@@ -27,6 +27,6 @@ ParqueAereo				1200		2.5			8		AVENTURA
 Espeleologia			1800		4			6		AVENTURA
 RutaDelVino				2500		5			10		DEGUSTACION
 TourGastronomico		1800		4			6		DEGUSTACION
-CerveceriaArtesanal		1200		3			8		DEGUSTACION
+CerveceriaArtesanal		1201		3			8		DEGUSTACION
 CataDeChocolate			800			1.5			12		DEGUSTACION
 QueseriaArtesanal		1000		2			6		DEGUSTACION
