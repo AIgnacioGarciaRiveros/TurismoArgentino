@@ -52,6 +52,18 @@ public abstract class Promocion {
 		return atracciones;
 	}
 
+	public TipoDePromocion getTipoDePromocion() {
+		return tipoDePromocion;
+	}
+
+	public double getPrecioConDescuento() {
+		return precioConDescuento;
+	}
+
+	public double getDuracion() {
+		return duracion;
+	}
+
 	@Override
 	public String toString() {
 		return "Tipo de atraccion: " + tipoDeAtraccion + "\t\tAtracciones: " + Arrays.toString(atracciones)

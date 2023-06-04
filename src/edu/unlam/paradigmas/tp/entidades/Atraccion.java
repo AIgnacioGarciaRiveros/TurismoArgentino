@@ -101,6 +101,6 @@ public class Atraccion {
 				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo) && tipo == other.tipo;
 	}
 
-	
+
 
 }

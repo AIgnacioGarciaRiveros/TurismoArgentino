@@ -7,5 +7,14 @@ public class Main {
 
 		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		sistema.iniciarSistema();
+		
+		/*List<Atraccion> atracciones = new ArrayList<>();
+		Iterator<Atraccion> iterator = atracciones.iterator();
+		atracciones.add(new Atraccion());
+		
+		while(iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}*/
+		
 	}
 }
