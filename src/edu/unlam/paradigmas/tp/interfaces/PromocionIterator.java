@@ -7,6 +7,6 @@ public interface PromocionIterator {
 	public boolean hasNext();
 
 	public Promocion next();
-	
+
 	public void reset();
 }

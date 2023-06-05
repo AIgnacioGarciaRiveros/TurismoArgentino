@@ -16,8 +16,9 @@ public class InterfazUsuario {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
 		Promocion promocion;
-		System.out.println("\nTus recursos:" + "\n\tPresupuesto: " + usuario.getPresupuesto() + "\n\tTiempo: "
-				+ usuario.getTiempoDisponible() + "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
+		System.out.println("\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+				+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n\tTu preferencia: "
+				+ usuario.getAtraccionFavorita());
 		PromocionIteratorImpl promocionIt = new PromocionIteratorImpl(promociones, usuario, atracciones);
 		while (promocionIt.hasNext()) {
 			try {
@@ -29,16 +30,19 @@ public class InterfazUsuario {
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
 					procesarCompraPromocion(usuario, promocion, atracciones);
-					System.out.println("\nTus recursos:" + "\n\tPresupuesto: " + usuario.getPresupuesto()
-							+ "\n\tTiempo: " + usuario.getTiempoDisponible() + "\n\tTu preferencia: "
-							+ usuario.getAtraccionFavorita());
+					System.out.println(
+							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
+									+ "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
 				}
 
 			} catch (NoSuchElementException e) {
 				System.out.println(" No podes seguir comprando PROMOCIONES, te mostramos atracciones disponibles:");
 			}
-			System.out.println();
-			System.out.println();
+			
+			//System.out.println(atracciones);
+			
+			System.out.println("\n");
 		}
 
 	}
@@ -46,10 +50,10 @@ public class InterfazUsuario {
 	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario) {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
-		// System.out.println("============ ARCHIVO ATRACCIONES ============");
 		Atraccion atraccion;
-		System.out.println("\nTus recursos:" + "\n\tPresupuesto: " + usuario.getPresupuesto() + "\n\tTiempo: "
-				+ usuario.getTiempoDisponible() + "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
+		System.out.println("\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+				+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n\tTu preferencia: "
+				+ usuario.getAtraccionFavorita());
 		AtraccionIteratorImpl atraccionIt = new AtraccionIteratorImpl(atracciones, usuario);
 		while (atraccionIt.hasNext()) {
 
@@ -62,17 +66,18 @@ public class InterfazUsuario {
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
 					procesarCompraAtraccion(atraccion, usuario);
-					System.out.println("\nTus recursos:" + "\n\tPresupuesto: " + usuario.getPresupuesto()
-							+ "\n\tTiempo: " + usuario.getTiempoDisponible() + "\n\tTu preferencia: "
-							+ usuario.getAtraccionFavorita());
+					System.out.println(
+							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
+									+ "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
 				}
 			} else
 				System.out.println("No hay mas opciones para tus recursos");
+			
+			//System.out.println(atracciones);
 
 		}
-		System.out.println("========================================================================");
-		System.out.println();
-		System.out.println();
+		System.out.println("========================================================================\n\n");
 	}
 
 	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario) {
@@ -93,4 +98,11 @@ public class InterfazUsuario {
 		}
 	}
 
+	public void resetearEstaDisponible(Map<String, Atraccion> atracciones) {
+		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
+			Atraccion atraccion = entry.getValue();
+			if (atraccion.getCupoDiario() != 0 && atraccion.getEstaDisponible() == false)
+				atraccion.setEstaDisponible(true);
+		}
+	}
 }

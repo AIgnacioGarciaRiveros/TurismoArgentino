@@ -6,7 +6,7 @@ import java.util.Objects;
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
 import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 
-public abstract class Promocion {
+public abstract class Promocion implements Comparable<Promocion> {
 
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Atraccion[] atracciones;
@@ -23,37 +23,41 @@ public abstract class Promocion {
 		this.tipoDePromocion = tipoDePromocion;
 
 		// PREGUNTAR
-		this.precioOriginal = calcularPrecioOriginalTotal(); 
+		this.precioOriginal = calcularPrecioOriginal();
 		this.precioConDescuento = calcularPrecioConDescuento();
-		this.duracion = calcularDuracionTotal();
-	}
-
-	protected double getPrecioOriginal() {
-		return this.precioOriginal;
+		this.duracion = calcularDuracion();
 	}
 
 	protected abstract double calcularPrecioConDescuento();
 
-	protected double calcularPrecioOriginalTotal() {
-		double precioOriginalTotal = 0;
+	protected double calcularPrecioOriginal() {
+		double precioOriginal = 0;
 		for (Atraccion atraccion : atracciones)
-			precioOriginalTotal += atraccion.getPrecio();
-		return precioOriginalTotal;
+			precioOriginal += atraccion.getPrecio();
+		return precioOriginal;
 	}
 
-	private double calcularDuracionTotal() {
-		double duracionTotal = 0;
+	private double calcularDuracion() {
+		double duracion = 0;
 		for (Atraccion atraccion : atracciones)
-			duracionTotal += atraccion.getTiempo();
-		return duracionTotal;
+			duracion += atraccion.getTiempo();
+		return duracion;
 	}
 
 	public Atraccion[] getAtracciones() {
 		return atracciones;
 	}
 
+	public TipoDeAtraccion getTipoDeAtraccion() {
+		return tipoDeAtraccion;
+	}
+
 	public TipoDePromocion getTipoDePromocion() {
 		return tipoDePromocion;
+	}
+
+	protected double getPrecioOriginal() {
+		return this.precioOriginal;
 	}
 
 	public double getPrecioConDescuento() {
@@ -66,18 +70,19 @@ public abstract class Promocion {
 
 	private String obtenerNombresAtracciones() {
 		String nombresAtracciones = "";
-		for(int i=0;i<atracciones.length;i++) {
-			nombresAtracciones+=atracciones[i].getNombre()+", ";
+		for (int i = 0; i < atracciones.length; i++) {
+			nombresAtracciones += atracciones[i].getNombre() + ", ";
 		}
-		nombresAtracciones = nombresAtracciones.substring(0,nombresAtracciones.length()-2).replaceAll("(?=[A-Z])", " ");
-//		nombresAtracciones=nombresAtracciones.replaceAll("(?=[A-Z])", " ");
+		nombresAtracciones = nombresAtracciones.substring(0, nombresAtracciones.length() - 2).replaceAll("(?=[A-Z])",
+				" ");
 		return nombresAtracciones;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Promocion \n-Atracciones incluidas:" +obtenerNombresAtracciones()+"\n-Duracion: \t\t"+duracion+" horas\n-Precio original: \t$"
-				+precioOriginal+"\n-Precio con descuento:  $"+precioConDescuento+"\n";
+		return "Promocion \n-Tipo de atraccion: " + tipoDeAtraccion + "\n-Atracciones incluidas:"
+				+ obtenerNombresAtracciones() + "\n-Duracion: \t\t" + duracion + " horas\n-Precio original: \t$"
+				+ precioOriginal + "\n-Precio con descuento:  $" + precioConDescuento + "\n";
 	}
 
 	@Override
@@ -104,6 +109,22 @@ public abstract class Promocion {
 				&& Double.doubleToLongBits(precioConDescuento) == Double.doubleToLongBits(other.precioConDescuento)
 				&& Double.doubleToLongBits(precioOriginal) == Double.doubleToLongBits(other.precioOriginal)
 				&& tipoDeAtraccion == other.tipoDeAtraccion && tipoDePromocion == other.tipoDePromocion;
+	}
+
+	@Override
+	public int compareTo(Promocion otraPromocion) {
+
+		double precioPromocion = this.precioConDescuento;
+		double precioOtraPromocion = otraPromocion.precioConDescuento;
+		int cmpPrecio = Double.compare(precioPromocion, precioOtraPromocion);
+
+		double tiempoPromocion = this.duracion;
+		double tiempoOtraPromocion = otraPromocion.duracion;
+
+		if (cmpPrecio == 0)
+			return Double.compare(tiempoPromocion, tiempoOtraPromocion);
+
+		return cmpPrecio;
 	}
 
 }

@@ -12,8 +12,7 @@ public class Atraccion {
 	private int cupoDiario;
 	private TipoDeAtraccion tipo;
 	private boolean estaDisponible;
-	
-	
+
 	public Atraccion() {
 	}
 
@@ -65,8 +64,7 @@ public class Atraccion {
 	public void setTipo(TipoDeAtraccion tipo) {
 		this.tipo = tipo;
 	}
-	
-	
+
 	public boolean getEstaDisponible() {
 		return estaDisponible;
 	}
@@ -77,8 +75,8 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "Atraccion\n-Nombre:  "+nombre.replaceAll("(?=[A-Z])", " ")+"\n-Precio:   $"+precio+"\n-Duracion: "+tiempo+" horas\n"
-				+"esta disponible " + estaDisponible;
+		return "Atraccion \n-Tipo: " + tipo + "\n-Nombre:  " + nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio
+				+ "\n-Duracion: " + tiempo + " horas\n" + "esta disponible " + estaDisponible;
 	}
 
 	@Override
@@ -99,7 +97,5 @@ public class Atraccion {
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
 				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo) && tipo == other.tipo;
 	}
-
-
 
 }

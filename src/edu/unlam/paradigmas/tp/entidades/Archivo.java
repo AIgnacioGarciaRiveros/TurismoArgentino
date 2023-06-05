@@ -22,16 +22,18 @@ public class Archivo {
 		this.nombre = nombre;
 	}
 
-	public void crearArchivo(int[] datos) {
+	public void crearArchivoItinerario(int[] datos) {
 		FileWriter file = null;
 		PrintWriter printWriter = null;
 		try {
-			file = new FileWriter(
-					"casos de prueba/edu.unlam.paradigmas.entradasalida.ej01/out esperado/" + this.nombre + ".out");
+			file = new FileWriter("archivos/" + this.nombre + ".out");
 			printWriter = new PrintWriter(file);
+
+			// MODIFICAR
 			for (int i = 0; i < datos.length; i++) {
 				printWriter.println(datos[i]);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -88,7 +90,7 @@ public class Archivo {
 
 				TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(scanner.next());
 				String[] nombresAtracciones = scanner.next().split(",");
-			
+
 				Atraccion[] atraccionesPromocion = new Atraccion[nombresAtracciones.length];
 
 				for (int i = 0; i < nombresAtracciones.length; i++) {
@@ -148,30 +150,6 @@ public class Archivo {
 			scanner.close();
 		}
 		return usuarios;
-	}
-
-	public void guardarArchivo(int[] datos) {
-		FileWriter file = null;
-		PrintWriter printWriter = null;
-		try {
-			file = new FileWriter(
-					"casos de prueba/edu.unlam.paradigmas.entradasalida.ej01/out/" + this.nombre + ".out");
-			printWriter = new PrintWriter(file);
-			printWriter.println(datos.length);
-			for (int i = 0; i < datos.length; i++) {
-				printWriter.println(datos[i]);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (file != null) {
-				try {
-					file.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 
 }

@@ -49,8 +49,6 @@ public class Usuario {
 		return atraccionFavorita;
 	}
 
-
-
 	public void setAtraccionFavorita(TipoDeAtraccion atraccionFavorita) {
 		this.atraccionFavorita = atraccionFavorita;
 	}
@@ -61,7 +59,7 @@ public class Usuario {
 				+ "\tTiempo Disponible: " + String.format("%-10.2f", tiempoDisponible) + "Atraccion Favorita: "
 				+ atraccionFavorita;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(atraccionFavorita, nombre, presupuesto, tiempoDisponible);

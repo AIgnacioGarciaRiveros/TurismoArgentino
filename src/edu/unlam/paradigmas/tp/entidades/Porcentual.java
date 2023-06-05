@@ -11,10 +11,10 @@ public class Porcentual extends Promocion {
 
 	@Override
 	protected double calcularPrecioConDescuento() {
-		
+
 		double precioTotal = getPrecioOriginal();
-		
-		if(precioTotal > 5000)
+
+		if (precioTotal > 5000)
 			return precioTotal - precioTotal * 0.4;
 		else if (precioTotal > 4000)
 			return precioTotal - precioTotal * 0.3;

@@ -31,34 +31,34 @@ public class FuncionalidadesPromocionesTests {
 	public void atracciones() {
 		Archivo archivoAtracciones = new Archivo("AtraccionesTest");
 		Map<String, Atraccion> resultadoObtenido = archivoAtracciones.leerArchivoAtraccion();
-		
+
 		Map<String, Atraccion> resultadoEsperado = new HashMap<>();
 		resultadoEsperado.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
 		resultadoEsperado.put("BodegasChandon",
 				new Atraccion("BodegasChandon", 4100, 3, 20, TipoDeAtraccion.DEGUSTACION));
 		resultadoEsperado.put("LosCardones", new Atraccion("LosCardones", 3267, 5, 2, TipoDeAtraccion.PAISAJE));
-		
+
 		assertEquals(resultadoEsperado, resultadoObtenido);
 	}
 
 	@Test
 	public void promociones() {
-		
+
 		Map<String, Atraccion> mapaAtracciones = new HashMap<>();
 		mapaAtracciones.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
 		mapaAtracciones.put("Rafting", new Atraccion("Rafting", 900, 1, 10, TipoDeAtraccion.AVENTURA));
 		mapaAtracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
-		
+
 		Atraccion[] atracciones = { new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA),
 				new Atraccion("Rafting", 900, 1, 10, TipoDeAtraccion.AVENTURA),
 				new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA) };
-		
+
 		Archivo archivoPromociones = new Archivo("PromocionesTest");
 		List<Promocion> resultadoObtenido = archivoPromociones.leerArchivoPromocion(mapaAtracciones);
 
 		List<Promocion> resultadoEsperado = new ArrayList<>();
 		resultadoEsperado.add(new Absoluta(TipoDeAtraccion.AVENTURA, atracciones, TipoDePromocion.ABSOLUTA));
-		
+
 		assertEquals(resultadoEsperado, resultadoObtenido);
 	}
 }
