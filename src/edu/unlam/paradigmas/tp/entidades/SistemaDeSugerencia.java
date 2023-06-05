@@ -1,8 +1,6 @@
 package edu.unlam.paradigmas.tp.entidades;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,15 +41,17 @@ public class SistemaDeSugerencia {
 		System.out.println("====================================");
 		System.out.println();
 		System.out.println();
-
-		List<Atraccion> atracciones2 = ordenarAtraccionesPorPreferencia(usuarios.get(0), atracciones);
-		for (Atraccion atraccion : atracciones2) {
-			System.out.println(atraccion);
+		Ordenador ordenador = new Ordenador();
+		Map<String,Atraccion> atracciones2 = ordenador.ordenarAtraccionesPorPreferencia(usuarios.get(0), atracciones);
+		for (Map.Entry<String, Atraccion> entry : atracciones2.entrySet()) {
+			System.out.println(entry);
 		}
 		System.out.println();
 		System.out.println();
 		
-		AtraccionesIteratorImplementacion iteradorAtracciones = new AtraccionesIteratorImplementacion(atracciones2, usuarios.get(2));
+		
+		
+		AtraccionIteratorImpl iteradorAtracciones = new AtraccionIteratorImpl(atracciones2, usuarios.get(2));
 		System.out.println("============ ITERADOR ATRACCIONES ============");
 		while(iteradorAtracciones.hasNext()) {
 			Atraccion atraccion = iteradorAtracciones.next();
@@ -66,7 +66,7 @@ public class SistemaDeSugerencia {
 		System.out.println();
 		System.out.println();
 		
-		PromocionesIteratorImplementacion iteradorPromociones = new PromocionesIteratorImplementacion(promociones, usuarios.get(2));
+		PromocionIteratorImpl iteradorPromociones = new PromocionIteratorImpl(promociones, usuarios.get(1),atracciones2);
 		System.out.println("============ ITERADOR PROMOCIONES ============");
 		while(iteradorPromociones.hasNext()) {
 			try {
@@ -79,32 +79,25 @@ public class SistemaDeSugerencia {
 		System.out.println("====================================");
 		System.out.println();
 		System.out.println();
-	}
-
-	public List<Atraccion> ordenarAtraccionesPorPreferencia(Usuario usuario, Map<String, Atraccion> atracciones) {
-		List<Atraccion> atraccionesOrdenadas = new ArrayList<>();
-		List<Atraccion> atraccionesNoPreferidas = new ArrayList<>();
-
-		String preferencia = usuario.getAtraccionFavorita().toString();
-
-		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
-			Atraccion atraccion = entry.getValue();
-			if (atraccion.getTipo().toString().equals(preferencia)) {
-				atraccionesOrdenadas.add(atraccion);
-			} else {
-				atraccionesNoPreferidas.add(atraccion);
+		InterfazUsuario interfaz= new InterfazUsuario();
+		interfaz.iniciarSistema(usuarios.get(1).getNombre());
+		interfaz.sugerirPromociones(promociones,atracciones,usuarios.get(1));
+		PromocionIteratorImpl iteradorPromociones2 = new PromocionIteratorImpl(promociones, usuarios.get(1),atracciones2);
+		System.out.println("============ ITERADOR PROMOCIONES ============");
+		while(iteradorPromociones2.hasNext()) {
+			try {
+				System.out.println(iteradorPromociones2.next().toString());
+			}
+			catch(NoSuchElementException e) {
+				System.err.println("No se encontró una promocion que sea valida para la compra");
 			}
 		}
-		List<Atraccion> ordenadosPorPrecio = ordenarPorPrecio(atraccionesOrdenadas);
-		ordenadosPorPrecio.addAll(ordenarPorPrecio(atraccionesNoPreferidas));
-		return ordenadosPorPrecio;
+		System.out.println("====================================");
+		System.out.println();
+		System.out.println();
 	}
 
-	private List<Atraccion> ordenarPorPrecio(List<Atraccion> atracciones) {
-		Comparator<Atraccion> comparador = Comparator.comparingDouble(Atraccion::getPrecio)
-				.thenComparingDouble(Atraccion::getTiempo);
-		Collections.sort(atracciones, comparador.reversed());
-		return atracciones;
-	}
+	
+	
 
 }

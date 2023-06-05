@@ -1,5 +1,10 @@
 package edu.unlam.paradigmas.tp.principal;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import edu.unlam.paradigmas.tp.entidades.Atraccion;
 import edu.unlam.paradigmas.tp.entidades.SistemaDeSugerencia;
 
 public class Main {
@@ -7,14 +12,7 @@ public class Main {
 
 		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		sistema.iniciarSistema();
-		
-		/*List<Atraccion> atracciones = new ArrayList<>();
-		Iterator<Atraccion> iterator = atracciones.iterator();
-		atracciones.add(new Atraccion());
-		
-		while(iterator.hasNext()) {
-			System.out.println(iterator.next());
-		}*/
-		
+	
+	
 	}
 }
