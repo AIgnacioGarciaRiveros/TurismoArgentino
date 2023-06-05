@@ -64,11 +64,20 @@ public abstract class Promocion {
 		return duracion;
 	}
 
+	private String obtenerNombresAtracciones() {
+		String nombresAtracciones = "";
+		for(int i=0;i<atracciones.length;i++) {
+			nombresAtracciones+=atracciones[i].getNombre()+", ";
+		}
+		nombresAtracciones = nombresAtracciones.substring(0,nombresAtracciones.length()-2).replaceAll("(?=[A-Z])", " ");
+//		nombresAtracciones=nombresAtracciones.replaceAll("(?=[A-Z])", " ");
+		return nombresAtracciones;
+	}
+	
 	@Override
 	public String toString() {
-		return "Tipo de atraccion: " + tipoDeAtraccion + "\t\tAtracciones: " + Arrays.toString(atracciones)
-				+ "\t\tTipo de promocion: " + tipoDePromocion + "\tPrecio orignal: " + precioOriginal
-				+ "\tPrecio con descuento: " + precioConDescuento + "\tDuracion: " + duracion;
+		return "Promocion \n-Atracciones incluidas:" +obtenerNombresAtracciones()+"\n-Duracion: \t\t"+duracion+" horas\n-Precio original: \t$"
+				+precioOriginal+"\n-Precio con descuento:  $"+precioConDescuento+"\n";
 	}
 
 	@Override
