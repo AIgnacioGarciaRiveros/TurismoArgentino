@@ -9,32 +9,6 @@ import java.util.Map;
 
 public class Ordenador {
 	
-	/*public List<Atraccion> ordenarAtraccionesPorPreferencia(Usuario usuario, Map<String, Atraccion> atracciones) {
-		List<Atraccion> atraccionesOrdenadas = new ArrayList<>();
-		List<Atraccion> atraccionesNoPreferidas = new ArrayList<>();
-
-		String preferencia = usuario.getAtraccionFavorita().toString();
-
-		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
-			Atraccion atraccion = entry.getValue();
-			if (atraccion.getTipo().toString().equals(preferencia)) {
-				atraccionesOrdenadas.add(atraccion);
-			} else {
-				atraccionesNoPreferidas.add(atraccion);
-			}
-		}
-		List<Atraccion> ordenadosPorPrecio = ordenarPorPrecio(atraccionesOrdenadas);
-		ordenadosPorPrecio.addAll(ordenarPorPrecio(atraccionesNoPreferidas));
-		return ordenadosPorPrecio;
-	}
-
-	private List<Atraccion> ordenarPorPrecio(List<Atraccion> atracciones) {
-		Comparator<Atraccion> comparador = Comparator.comparingDouble(Atraccion::getPrecio)
-				.thenComparingDouble(Atraccion::getTiempo);
-		Collections.sort(atracciones, comparador.reversed());
-		return atracciones;
-	}*/
-	
 	public Map<String,Atraccion> ordenarAtraccionesPorPreferencia(Usuario usuario, Map<String, Atraccion> atracciones) {
 		Map<String,Atraccion> atraccionesOrdenadas = new HashMap<>();
 		Map<String,Atraccion> atraccionesNoPreferidas = new HashMap<>();
