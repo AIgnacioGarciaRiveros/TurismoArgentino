@@ -51,7 +51,7 @@ public class SistemaDeSugerencia {
 		System.out.println();
 		System.out.println();
 		
-		AtraccionesIteratorImplementacion iteradorAtracciones = new AtraccionesIteratorImplementacion(atracciones2, usuarios.get(1));
+		AtraccionesIteratorImplementacion iteradorAtracciones = new AtraccionesIteratorImplementacion(atracciones2, usuarios.get(2));
 		System.out.println("============ ITERADOR ATRACCIONES ============");
 		while(iteradorAtracciones.hasNext()) {
 			Atraccion atraccion = iteradorAtracciones.next();
@@ -66,7 +66,7 @@ public class SistemaDeSugerencia {
 		System.out.println();
 		System.out.println();
 		
-		PromocionesIteratorImplementacion iteradorPromociones = new PromocionesIteratorImplementacion(promociones, usuarios.get(1));
+		PromocionesIteratorImplementacion iteradorPromociones = new PromocionesIteratorImplementacion(promociones, usuarios.get(2));
 		System.out.println("============ ITERADOR PROMOCIONES ============");
 		while(iteradorPromociones.hasNext()) {
 			try {
