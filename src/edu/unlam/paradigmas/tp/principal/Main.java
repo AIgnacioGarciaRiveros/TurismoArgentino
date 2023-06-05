@@ -7,5 +7,7 @@ public class Main {
 
 		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		sistema.iniciarSistema();
+	
+	
 	}
 }

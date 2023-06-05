@@ -1,6 +1,5 @@
 package edu.unlam.paradigmas.tp.entidades;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 import edu.unlam.paradigmas.tp.enums.TipoDeAtraccion;
@@ -78,8 +77,8 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + String.format("%-30s", nombre) + "Precio: $" + String.format("%-15.2f", precio)
-				+ "Tiempo: " + String.format("%-10.2f", tiempo) + "Cupo Diario: " + String.format("%-10d", cupoDiario) + "Tipo: " + String.format("%-15s",tipo);
+		return "Atraccion\n-Nombre:  "+nombre.replaceAll("(?=[A-Z])", " ")+"\n-Precio:   $"+precio+"\n-Duracion: "+tiempo+" horas\n"
+				+"esta disponible " + estaDisponible;
 	}
 
 	@Override
@@ -101,6 +100,6 @@ public class Atraccion {
 				&& Double.doubleToLongBits(tiempo) == Double.doubleToLongBits(other.tiempo) && tipo == other.tipo;
 	}
 
-	
+
 
 }
