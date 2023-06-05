@@ -23,12 +23,16 @@ public class SistemaDeSugerencia {
 
 		Ordenador ordenador = new Ordenador();
 		InterfazUsuario interfaz = new InterfazUsuario();
+		
+		Itinerario itinerario;
+		List<Itinerario> itinerarios = new ArrayList<>();
 
 		for (Usuario usuario : usuarios) {
 			List<Promocion> promocionesOrdenadas = ordenador.ordenarPromociones(usuario, promociones);
 			Map<String, Atraccion> atraccionesOrdenadas = ordenador.ordenarAtraccionesPorPreferencia(usuario,
 					atracciones);
 
+			itinerario = new Itinerario(usuario);
 			interfaz.iniciarSistema(usuario.getNombre());
 
 			// 1- Promociones preferidas
@@ -36,11 +40,19 @@ public class SistemaDeSugerencia {
 			// 3 - Atracciones preferidas
 			// 4 - Atracciones no preferidas
 
-			interfaz.sugerirPromociones(promocionesOrdenadas, atraccionesOrdenadas, usuario);
-			interfaz.sugerirAtracciones(atraccionesOrdenadas, usuario);
+			interfaz.sugerirPromociones(promocionesOrdenadas, atraccionesOrdenadas, usuario, itinerario);
+			interfaz.sugerirAtracciones(atraccionesOrdenadas, usuario, itinerario);
 			interfaz.resetearEstaDisponible(atraccionesOrdenadas);
+			
+			itinerarios.add(itinerario);
+			
+			System.out.println("Resultado de tu compra:");
+			itinerario.mostrarItinerario();
 		}
 
+		Archivo archivoItinerario = new Archivo("Itinerario");
+		archivoItinerario.crearArchivoItinerario(itinerarios);
+		
 	}
 
 }

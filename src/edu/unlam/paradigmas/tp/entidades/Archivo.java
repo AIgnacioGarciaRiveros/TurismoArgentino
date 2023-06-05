@@ -22,19 +22,29 @@ public class Archivo {
 		this.nombre = nombre;
 	}
 
-	public void crearArchivoItinerario(int[] datos) {
+	public void crearArchivoItinerario(List<Itinerario> itinerario) {
 		FileWriter file = null;
 		PrintWriter printWriter = null;
 		try {
 			file = new FileWriter("archivos/" + this.nombre + ".out");
 			printWriter = new PrintWriter(file);
 
-			// MODIFICAR
-			for (int i = 0; i < datos.length; i++) {
-				printWriter.println(datos[i]);
+			printWriter.println(
+					"========================================= Bienvenido a Turismo Argentino =========================================\n");
+			for (Itinerario itinerarioPorUsuario : itinerario) {
+				printWriter.println(itinerarioPorUsuario.toString());
+				printWriter.println("- Total por usuario:");
+				printWriter.println("\tPrecio:\t\t$" + (itinerarioPorUsuario.obtenerPrecioDeAtracciones()
+						+ itinerarioPorUsuario.obtenerPrecioDePromociones()));
+				printWriter.println("\tDuracion:\t" + (itinerarioPorUsuario.obtenerDuracionDeAtracciones()
+						+ itinerarioPorUsuario.obtenerDuracionDePromociones()) + " horas");
+				printWriter.println(
+						"\n===================================================================================================================\n");
 			}
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (file != null) {

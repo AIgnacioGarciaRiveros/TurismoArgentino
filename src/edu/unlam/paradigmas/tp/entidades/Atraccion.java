@@ -75,8 +75,8 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "Atraccion \n-Tipo: " + tipo + "\n-Nombre:  " + nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio
-				+ "\n-Duracion: " + tiempo + " horas\n" + "esta disponible " + estaDisponible;
+		return "Atraccion \n" + String.format("%-11s","-Tipo:") + tipo + "\n-Nombre:  " + nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio
+				+ "\n-Duracion: " + tiempo + " horas\n";
 	}
 
 	@Override

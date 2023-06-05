@@ -80,7 +80,7 @@ public abstract class Promocion implements Comparable<Promocion> {
 
 	@Override
 	public String toString() {
-		return "Promocion \n-Tipo de atraccion: " + tipoDeAtraccion + "\n-Atracciones incluidas:"
+		return "Promocion \n" + String.format("%-24s","-Tipo de atraccion: ") + tipoDeAtraccion + "\n-Atracciones incluidas:"
 				+ obtenerNombresAtracciones() + "\n-Duracion: \t\t" + duracion + " horas\n-Precio original: \t$"
 				+ precioOriginal + "\n-Precio con descuento:  $" + precioConDescuento + "\n";
 	}

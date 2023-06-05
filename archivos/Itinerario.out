@@ -1,0 +1,89 @@
+========================================= Bienvenido a Turismo Argentino =========================================
+
+Nombre: Lucas          	Presupuesto: $6500,00   	Tiempo Disponible: 0,00      Atraccion Favorita: AVENTURA
+
+Promociones
+
+Nro 1:
+Promocion 
+-Tipo de atraccion:     AVENTURA
+-Atracciones incluidas: Espeleologia,  Pesca Deportiva,  Parapente
+-Duracion: 		11.5 horas
+-Precio original: 	$8800.0
+-Precio con descuento:  $8400.0
+
+Nro 2:
+Promocion 
+-Tipo de atraccion:     PAISAJE
+-Atracciones incluidas: Observatorio Astronomico,  Caminito,  Cerro Catedral
+-Duracion: 		7.5 horas
+-Precio original: 	$6300.0
+-Precio con descuento:  $5800.0
+
+
+Atracciones
+
+Nro 1:
+Atraccion 
+-Tipo:     AVENTURA
+-Nombre:   Rafting
+-Precio:   $1300.0
+-Duracion: 1.0 horas
+
+
+- Total por usuario:
+	Precio:		$15500.0
+	Duracion:	20.0 horas
+
+===================================================================================================================
+
+Nombre: Leandro        	Presupuesto: $9537,00   	Tiempo Disponible: 0,00      Atraccion Favorita: DEGUSTACION
+
+Promociones
+
+Nro 1:
+Promocion 
+-Tipo de atraccion:     DEGUSTACION
+-Atracciones incluidas: Ruta Del Vino,  Tafi Del Valle,  Cata De Chocolate
+-Duracion: 		10.0 horas
+-Precio original: 	$4763.0
+-Precio con descuento:  $3963.0
+
+
+Atracciones
+
+
+- Total por usuario:
+	Precio:		$3963.0
+	Duracion:	10.0 horas
+
+===================================================================================================================
+
+Nombre: Juan           	Presupuesto: $8900,00   	Tiempo Disponible: 0,00      Atraccion Favorita: PAISAJE
+
+Promociones
+
+
+Atracciones
+
+Nro 1:
+Atraccion 
+-Tipo:     PAISAJE
+-Nombre:   Observatorio Astronomico
+-Precio:   $800.0
+-Duracion: 2.0 horas
+
+Nro 2:
+Atraccion 
+-Tipo:     AVENTURA
+-Nombre:   Rafting
+-Precio:   $1300.0
+-Duracion: 1.0 horas
+
+
+- Total por usuario:
+	Precio:		$2100.0
+	Duracion:	3.0 horas
+
+===================================================================================================================
+

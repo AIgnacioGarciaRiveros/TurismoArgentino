@@ -12,7 +12,8 @@ public class InterfazUsuario {
 		System.out.println("Nombre visitante: " + nombreUsuario);
 	}
 
-	public void sugerirPromociones(List<Promocion> promociones, Map<String, Atraccion> atracciones, Usuario usuario) {
+	public void sugerirPromociones(List<Promocion> promociones, Map<String, Atraccion> atracciones, Usuario usuario,
+			Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
 		Promocion promocion;
@@ -29,7 +30,7 @@ public class InterfazUsuario {
 					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
-					procesarCompraPromocion(usuario, promocion, atracciones);
+					procesarCompraPromocion(usuario, promocion, atracciones, itinerario);
 					System.out.println(
 							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
 									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
@@ -39,15 +40,15 @@ public class InterfazUsuario {
 			} catch (NoSuchElementException e) {
 				System.out.println(" No podes seguir comprando PROMOCIONES, te mostramos atracciones disponibles:");
 			}
-			
-			//System.out.println(atracciones);
-			
+
+			// System.out.println(atracciones);
+
 			System.out.println("\n");
 		}
 
 	}
 
-	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario) {
+	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario, Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
 		Atraccion atraccion;
@@ -65,7 +66,7 @@ public class InterfazUsuario {
 					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
-					procesarCompraAtraccion(atraccion, usuario);
+					procesarCompraAtraccion(atraccion, usuario, itinerario);
 					System.out.println(
 							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
 									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
@@ -73,23 +74,26 @@ public class InterfazUsuario {
 				}
 			} else
 				System.out.println("No hay mas opciones para tus recursos");
-			
-			//System.out.println(atracciones);
+
+			// System.out.println(atracciones);
 
 		}
 		System.out.println("========================================================================\n\n");
 	}
 
-	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario) {
+	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario, Itinerario itinerario) {
 		usuario.setPresupuesto(usuario.getPresupuesto() - atraccion.getPrecio());
 		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - atraccion.getTiempo());
+		itinerario.agregarAtraccion(atraccion);
 		atraccion.setEstaDisponible(false);
 		atraccion.setCupoDiario(atraccion.getCupoDiario() - 1);
 	}
 
-	public void procesarCompraPromocion(Usuario usuario, Promocion promocion, Map<String, Atraccion> atracciones) {
+	public void procesarCompraPromocion(Usuario usuario, Promocion promocion, Map<String, Atraccion> atracciones,
+			Itinerario itinerario) {
 		usuario.setPresupuesto(usuario.getPresupuesto() - promocion.getPrecioConDescuento());
 		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - promocion.getDuracion());
+		itinerario.agregarPromocion(promocion);
 		Atraccion[] atraccionesOfertadas = promocion.getAtracciones();
 		for (int i = 0; i < atraccionesOfertadas.length; i++) {
 			Atraccion atraccionEncontrada = atracciones.get(atraccionesOfertadas[i].getNombre());
