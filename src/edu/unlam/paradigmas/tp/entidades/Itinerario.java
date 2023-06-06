@@ -5,14 +5,26 @@ import java.util.List;
 
 public class Itinerario {
 
-	Usuario usuario;
-	List<Promocion> promociones;
-	List<Atraccion> atracciones;
+	private Usuario usuario;
+	private List<Promocion> promociones;
+	private List<Atraccion> atracciones;
 
 	public Itinerario(Usuario usuario) {
 		this.usuario = usuario;
 		promociones = new ArrayList<>();
 		atracciones = new ArrayList<>();
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public List<Promocion> getPromociones() {
+		return promociones;
+	}
+
+	public List<Atraccion> getAtracciones() {
+		return atracciones;
 	}
 
 	public void agregarAtraccion(Atraccion atraccion) {
@@ -51,18 +63,6 @@ public class Itinerario {
 		return duracionTotal;
 	}
 	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public List<Promocion> getPromociones() {
-		return promociones;
-	}
-
-	public List<Atraccion> getAtracciones() {
-		return atracciones;
-	}
-
 	public void mostrarItinerario() {
 
 		System.out.println("Usuario: " + usuario.getNombre() + "\n");
@@ -107,7 +107,7 @@ public class Itinerario {
 		}
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 
 		String formatoItinerario = usuario.toString() + "\n\n";
@@ -122,6 +122,6 @@ public class Itinerario {
 			formatoItinerario += "Nro " + (i + 1) + ":\n" + atracciones.get(i) + "\n";
 
 		return formatoItinerario;
-	}
+	}*/
 
 }

@@ -91,9 +91,7 @@ public class Archivo {
 				printWriter.println("\n========================================================================\n");
 			}
 
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (file != null) {

@@ -29,8 +29,7 @@ public class SistemaDeSugerencia {
 
 		for (Usuario usuario : usuarios) {
 			List<Promocion> promocionesOrdenadas = ordenador.ordenarPromociones(usuario, promociones);
-			Map<String, Atraccion> atraccionesOrdenadas = ordenador.ordenarAtraccionesPorPreferencia(usuario,
-					atracciones);
+			Map<String, Atraccion> atraccionesOrdenadas = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones);
 
 			itinerario = new Itinerario(usuario);
 			interfaz.iniciarSistema(usuario.getNombre());
