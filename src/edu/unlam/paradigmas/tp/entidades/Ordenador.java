@@ -9,28 +9,27 @@ import java.util.List;
 import java.util.Map;
 
 public class Ordenador {
-	
+
 	public List<Promocion> ordenarPromociones(Usuario usuario, List<Promocion> promociones) {
-		
+
 		List<Promocion> promocionesPreferidas = new ArrayList<>();
 		List<Promocion> promocionesNoPreferidas = new ArrayList<>();
-		
+
 		String preferencia = usuario.getAtraccionFavorita().toString();
-		
+
 		for (Promocion promocion : promociones) {
-			if(promocion.getTipoDeAtraccion().toString().equals(preferencia)) {
+			if (promocion.getTipoDeAtraccion().toString().equals(preferencia)) {
 				promocionesPreferidas.add(promocion);
-			}
-			else {
+			} else {
 				promocionesNoPreferidas.add(promocion);
 			}
 		}
-		
+
 		Collections.sort(promocionesPreferidas, Collections.reverseOrder());
 		Collections.sort(promocionesNoPreferidas, Collections.reverseOrder());
-		
+
 		promocionesPreferidas.addAll(promocionesNoPreferidas);
-		
+
 		return promocionesPreferidas;
 	}
 
@@ -43,15 +42,15 @@ public class Ordenador {
 		String preferencia = usuario.getAtraccionFavorita().toString();
 
 		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
-			
+
 			String nombreAtraccion = entry.getKey();
 			Atraccion atraccion = entry.getValue();
-			
+
 			if (atraccion.getTipo().toString().equals(preferencia))
 				atraccionesPreferidas.put(nombreAtraccion, atraccion);
 			else
 				atraccionesNoPreferidas.put(nombreAtraccion, atraccion);
-		
+
 		}
 		Map<String, Atraccion> atraccionesOrdenadas = ordenarAtraccionesPorPrecioYTiempo(atraccionesPreferidas);
 		atraccionesOrdenadas.putAll(ordenarAtraccionesPorPrecioYTiempo(atraccionesNoPreferidas));
@@ -73,5 +72,5 @@ public class Ordenador {
 
 		return atraccionesOrdenadas;
 	}
-	
+
 }

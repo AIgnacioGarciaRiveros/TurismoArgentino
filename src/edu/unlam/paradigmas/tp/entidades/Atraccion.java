@@ -73,10 +73,18 @@ public class Atraccion {
 		this.estaDisponible = estaDisponible;
 	}
 
+	public static String formatoTipoDeAtraccion(TipoDeAtraccion tipoDeAtraccion) {
+		String tipoDeAtraccionFormateada = tipoDeAtraccion.toString();
+		String primerCaracter = tipoDeAtraccionFormateada.charAt(0) + "";
+		String restoDelString = tipoDeAtraccionFormateada.substring(1).toLowerCase();
+		return primerCaracter.toUpperCase() + restoDelString;
+	}
+
 	@Override
 	public String toString() {
-		return "Atraccion \n" + String.format("%-11s","-Tipo:") + tipo + "\n-Nombre:  " + nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio
-				+ "\n-Duracion: " + tiempo + " horas\n";
+		return "Atraccion \n" + String.format("%-11s", "-Tipo:") + formatoTipoDeAtraccion(tipo) + "\n-Nombre:  "
+				+ nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio + "\n-Duracion: " + tiempo
+				+ " horas\n";
 	}
 
 	@Override

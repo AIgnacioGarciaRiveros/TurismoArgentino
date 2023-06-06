@@ -17,9 +17,9 @@ public class InterfazUsuario {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
 		Promocion promocion;
-		System.out.println("\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
-				+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n\tTu preferencia: "
-				+ usuario.getAtraccionFavorita());
+		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+				+ "\n-Tiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
+				+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 		PromocionIteratorImpl promocionIt = new PromocionIteratorImpl(promociones, usuario, atracciones);
 		while (promocionIt.hasNext()) {
 			try {
@@ -31,18 +31,15 @@ public class InterfazUsuario {
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
 					procesarCompraPromocion(usuario, promocion, atracciones, itinerario);
-					System.out.println(
-							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
-									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
-									+ "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
+					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
+							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
+							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
+							+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 				}
 
 			} catch (NoSuchElementException e) {
 				System.out.println(" No podes seguir comprando PROMOCIONES, te mostramos atracciones disponibles:");
 			}
-
-			// System.out.println(atracciones);
-
 			System.out.println("\n");
 		}
 
@@ -52,9 +49,9 @@ public class InterfazUsuario {
 		Scanner scanner = new Scanner(System.in);
 		char respuestaUsuario;
 		Atraccion atraccion;
-		System.out.println("\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
-				+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n\tTu preferencia: "
-				+ usuario.getAtraccionFavorita());
+		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
+				+ "\n-Tiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
+				+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 		AtraccionIteratorImpl atraccionIt = new AtraccionIteratorImpl(atracciones, usuario);
 		while (atraccionIt.hasNext()) {
 
@@ -67,18 +64,15 @@ public class InterfazUsuario {
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
 					procesarCompraAtraccion(atraccion, usuario, itinerario);
-					System.out.println(
-							"\nTus recursos:" + "\n\tPresupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
-									+ "\n\tTiempo: " + String.format("%.2f", usuario.getTiempoDisponible())
-									+ "\n\tTu preferencia: " + usuario.getAtraccionFavorita());
+					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
+							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
+							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
+							+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 				}
 			} else
-				System.out.println("No hay mas opciones para tus recursos");
-
-			// System.out.println(atracciones);
-
+				System.out.println("\nNo hay mas opciones para tus recursos\n");
 		}
-		System.out.println("========================================================================\n\n");
+		System.out.println("========================================================================\n");
 	}
 
 	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario, Itinerario itinerario) {

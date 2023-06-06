@@ -23,7 +23,7 @@ public class SistemaDeSugerencia {
 
 		Ordenador ordenador = new Ordenador();
 		InterfazUsuario interfaz = new InterfazUsuario();
-		
+
 		Itinerario itinerario;
 		List<Itinerario> itinerarios = new ArrayList<>();
 
@@ -43,16 +43,16 @@ public class SistemaDeSugerencia {
 			interfaz.sugerirPromociones(promocionesOrdenadas, atraccionesOrdenadas, usuario, itinerario);
 			interfaz.sugerirAtracciones(atraccionesOrdenadas, usuario, itinerario);
 			interfaz.resetearEstaDisponible(atraccionesOrdenadas);
-			
+
 			itinerarios.add(itinerario);
-			
-			System.out.println("Resultado de tu compra:");
+
+			System.out.println("Resultado de tu compra\n");
 			itinerario.mostrarItinerario();
 		}
 
 		Archivo archivoItinerario = new Archivo("Itinerario");
 		archivoItinerario.crearArchivoItinerario(itinerarios);
-		
+
 	}
 
 }

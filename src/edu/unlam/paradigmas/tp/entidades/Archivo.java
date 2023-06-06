@@ -22,6 +22,14 @@ public class Archivo {
 		this.nombre = nombre;
 	}
 
+	public void grabarItinerarioEnArchivo(String nombreArchivo) {
+		try (PrintWriter escritor = new PrintWriter(new FileWriter(nombreArchivo))) {
+
+		} catch (IOException e) {
+			System.err.println("Error al escribir en el archivo: " + e.getMessage());
+		}
+	}
+
 	public void crearArchivoItinerario(List<Itinerario> itinerario) {
 		FileWriter file = null;
 		PrintWriter printWriter = null;
@@ -29,17 +37,58 @@ public class Archivo {
 			file = new FileWriter("archivos/" + this.nombre + ".out");
 			printWriter = new PrintWriter(file);
 
-			printWriter.println(
-					"========================================= Bienvenido a Turismo Argentino =========================================\n");
+			printWriter.println("==================== Bienvenido a Turismo Argentino ====================\n");
+
 			for (Itinerario itinerarioPorUsuario : itinerario) {
-				printWriter.println(itinerarioPorUsuario.toString());
-				printWriter.println("- Total por usuario:");
-				printWriter.println("\tPrecio:\t\t$" + (itinerarioPorUsuario.obtenerPrecioDeAtracciones()
-						+ itinerarioPorUsuario.obtenerPrecioDePromociones()));
-				printWriter.println("\tDuracion:\t" + (itinerarioPorUsuario.obtenerDuracionDeAtracciones()
-						+ itinerarioPorUsuario.obtenerDuracionDePromociones()) + " horas");
-				printWriter.println(
-						"\n===================================================================================================================\n");
+				printWriter.println("Usuario: " + itinerarioPorUsuario.getUsuario().getNombre() + "\n");
+				printWriter.println("======================== Promociones adquiridas ========================\n");
+
+				int numeroDePromocion = 1;
+				if (itinerarioPorUsuario.getPromociones().size() > 0) {
+					for (Promocion promocion : itinerarioPorUsuario.getPromociones()) {
+						printWriter.println("     Promocion Nro " + numeroDePromocion++ + "\n");
+						printWriter.println("     " + String.format("%-29s", "Nombre")
+								+ String.format("%-30s", "Duracion") + String.format("%-30s", "Precio") + "\n");
+						for (Atraccion atraccion : promocion.getAtracciones()) {
+							printWriter.println(
+									"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+											+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+											+ String.format("%-30s", atraccion.getPrecio()));
+						}
+						printWriter.println("\n");
+					}
+					printWriter.println(String.format("%-34s", "- Total de promociones")
+							+ itinerarioPorUsuario.obtenerDuracionDePromociones() + " horas"
+							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioDePromociones()));
+
+				} else {
+					printWriter.println("El usuario no adquirio ninguna promocion");
+				}
+
+				printWriter.println("\n======================== Atracciones adquiridas ========================\n");
+				if (itinerarioPorUsuario.getAtracciones().size() > 0) {
+					printWriter.println("     " + String.format("%-29s", "Nombre") + String.format("%-30s", "Duracion")
+							+ String.format("%-30s", "Precio") + "\n");
+					for (Atraccion atraccion : itinerarioPorUsuario.getAtracciones()) {
+						printWriter.println(
+								"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+										+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+										+ String.format("%-30s", atraccion.getPrecio()));
+					}
+					printWriter.println("\n" + String.format("%-34s", "- Total de atracciones")
+							+ itinerarioPorUsuario.obtenerDuracionDeAtracciones() + " horas"
+							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioDeAtracciones()));
+				} else {
+					printWriter.println("El usuario no adquirio ninguna atraccion");
+				}
+
+				printWriter.println("\n" + String.format("%-34s", "- Total por usuario")
+						+ (itinerarioPorUsuario.obtenerDuracionDeAtracciones()
+								+ itinerarioPorUsuario.obtenerDuracionDePromociones())
+						+ " horas" + String.format("%28s", "$" + (itinerarioPorUsuario.obtenerPrecioDeAtracciones()
+								+ itinerarioPorUsuario.obtenerPrecioDePromociones())));
+
+				printWriter.println("\n========================================================================\n");
 			}
 
 		} catch (
