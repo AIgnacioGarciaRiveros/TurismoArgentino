@@ -15,6 +15,7 @@ public class InterfazUsuario {
 	public void sugerirPromociones(List<Promocion> promociones, Map<String, Atraccion> atracciones, Usuario usuario,
 			Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
+		SistemaDeSugerencia sistema= new SistemaDeSugerencia();
 		char respuestaUsuario;
 		Promocion promocion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
@@ -30,7 +31,7 @@ public class InterfazUsuario {
 					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
-					procesarCompraPromocion(usuario, promocion, atracciones, itinerario);
+					sistema.procesarCompraPromocion(usuario, promocion, atracciones, itinerario);
 					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
 							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
 							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
@@ -47,6 +48,7 @@ public class InterfazUsuario {
 
 	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario, Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
+		SistemaDeSugerencia sistema= new SistemaDeSugerencia();
 		char respuestaUsuario;
 		Atraccion atraccion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
@@ -63,7 +65,7 @@ public class InterfazUsuario {
 					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
 				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
 				if (respuestaUsuario == 'S') {
-					procesarCompraAtraccion(atraccion, usuario, itinerario);
+					sistema.procesarCompraAtraccion(atraccion, usuario, itinerario);
 					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
 							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
 							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
@@ -73,34 +75,5 @@ public class InterfazUsuario {
 				System.out.println("\nNo hay mas opciones para tus recursos\n");
 		}
 		System.out.println("========================================================================\n");
-	}
-
-	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario, Itinerario itinerario) {
-		usuario.setPresupuesto(usuario.getPresupuesto() - atraccion.getPrecio());
-		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - atraccion.getTiempo());
-		itinerario.agregarAtraccion(atraccion);
-		atraccion.setEstaDisponible(false);
-		atraccion.setCupoDiario(atraccion.getCupoDiario() - 1);
-	}
-
-	public void procesarCompraPromocion(Usuario usuario, Promocion promocion, Map<String, Atraccion> atracciones,
-			Itinerario itinerario) {
-		usuario.setPresupuesto(usuario.getPresupuesto() - promocion.getPrecioConDescuento());
-		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - promocion.getDuracion());
-		itinerario.agregarPromocion(promocion);
-		Atraccion[] atraccionesOfertadas = promocion.getAtracciones();
-		for (int i = 0; i < atraccionesOfertadas.length; i++) {
-			Atraccion atraccionEncontrada = atracciones.get(atraccionesOfertadas[i].getNombre());
-			atraccionEncontrada.setEstaDisponible(false);
-			atraccionEncontrada.setCupoDiario(atraccionEncontrada.getCupoDiario() - 1);
-		}
-	}
-
-	public void resetearEstaDisponible(Map<String, Atraccion> atracciones) {
-		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
-			Atraccion atraccion = entry.getValue();
-			if (atraccion.getCupoDiario() != 0 && atraccion.getEstaDisponible() == false)
-				atraccion.setEstaDisponible(true);
-		}
 	}
 }

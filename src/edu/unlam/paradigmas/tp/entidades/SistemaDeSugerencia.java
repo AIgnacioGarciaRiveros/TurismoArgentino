@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class SistemaDeSugerencia {
 
-	public void iniciarSistema() {
+	public void iniciar() {
 
 		Archivo archivoUsuario = new Archivo("UsuariosTest");
 		List<Usuario> usuarios = new ArrayList<>();
@@ -28,20 +28,20 @@ public class SistemaDeSugerencia {
 		List<Itinerario> itinerarios = new ArrayList<>();
 
 		for (Usuario usuario : usuarios) {
-			List<Promocion> promocionesOrdenadas = ordenador.ordenarPromociones(usuario, promociones);
-			Map<String, Atraccion> atraccionesOrdenadas = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones);
+			List<Promocion> promocionesOrdenadasPref = ordenador.ordenarPromociones(usuario, promociones, 1);
+			List<Promocion> promocionesOrdenadasNoPref = ordenador.ordenarPromociones(usuario, promociones, 2);
+			Map<String, Atraccion> atraccionesOrdenadasPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones, 1);
+			Map<String, Atraccion> atraccionesOrdenadasNoPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones, 2);
 
 			itinerario = new Itinerario(usuario);
 			interfaz.iniciarSistema(usuario.getNombre());
+			interfaz.sugerirPromociones(promocionesOrdenadasPref, atraccionesOrdenadasPref, usuario, itinerario);
+			interfaz.sugerirAtracciones(atraccionesOrdenadasPref, usuario, itinerario);
+			interfaz.sugerirPromociones(promocionesOrdenadasNoPref, atraccionesOrdenadasNoPref, usuario, itinerario);
+			interfaz.sugerirAtracciones(atraccionesOrdenadasNoPref, usuario, itinerario);
 
-			// 1- Promociones preferidas
-			// 2- Promociones no preferidas
-			// 3 - Atracciones preferidas
-			// 4 - Atracciones no preferidas
-
-			interfaz.sugerirPromociones(promocionesOrdenadas, atraccionesOrdenadas, usuario, itinerario);
-			interfaz.sugerirAtracciones(atraccionesOrdenadas, usuario, itinerario);
-			interfaz.resetearEstaDisponible(atraccionesOrdenadas);
+			resetearEstaDisponible(atraccionesOrdenadasPref);
+			resetearEstaDisponible(atraccionesOrdenadasNoPref);
 
 			itinerarios.add(itinerario);
 
@@ -52,6 +52,35 @@ public class SistemaDeSugerencia {
 		Archivo archivoItinerario = new Archivo("Itinerario");
 		archivoItinerario.crearArchivoItinerario(itinerarios);
 
+	}
+
+	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario, Itinerario itinerario) {
+		usuario.setPresupuesto(usuario.getPresupuesto() - atraccion.getPrecio());
+		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - atraccion.getTiempo());
+		itinerario.agregarAtraccion(atraccion);
+		atraccion.setEstaDisponible(false);
+		atraccion.setCupoDiario(atraccion.getCupoDiario() - 1);
+	}
+
+	public void procesarCompraPromocion(Usuario usuario, Promocion promocion, Map<String, Atraccion> atracciones,
+			Itinerario itinerario) {
+		usuario.setPresupuesto(usuario.getPresupuesto() - promocion.getPrecioConDescuento());
+		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - promocion.getDuracion());
+		itinerario.agregarPromocion(promocion);
+		Atraccion[] atraccionesOfertadas = promocion.getAtracciones();
+		for (int i = 0; i < atraccionesOfertadas.length; i++) {
+			Atraccion atraccionEncontrada = atracciones.get(atraccionesOfertadas[i].getNombre());
+			atraccionEncontrada.setEstaDisponible(false);
+			atraccionEncontrada.setCupoDiario(atraccionEncontrada.getCupoDiario() - 1);
+		}
+	}
+
+	public void resetearEstaDisponible(Map<String, Atraccion> atracciones) {
+		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
+			Atraccion atraccion = entry.getValue();
+			if (atraccion.getCupoDiario() != 0 && atraccion.getEstaDisponible() == false)
+				atraccion.setEstaDisponible(true);
+		}
 	}
 
 }
