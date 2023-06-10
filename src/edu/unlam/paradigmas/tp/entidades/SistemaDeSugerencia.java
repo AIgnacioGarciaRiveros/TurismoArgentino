@@ -21,17 +21,26 @@ public class SistemaDeSugerencia {
 		List<Promocion> promociones = new ArrayList<>();
 		promociones = archivoPromocion.leerArchivoPromocion(atracciones);
 
+		List<Itinerario> itinerarios = ofertarAUsuarios(usuarios, atracciones, promociones);
+
+		Archivo archivoItinerario = new Archivo("Itinerario");
+		archivoItinerario.crearArchivoItinerario(itinerarios);
+
+	}
+
+	private List<Itinerario> ofertarAUsuarios(List<Usuario> usuarios, Map<String, Atraccion> atracciones,
+			List<Promocion> promociones) {
 		Ordenador ordenador = new Ordenador();
 		InterfazUsuario interfaz = new InterfazUsuario();
-
 		Itinerario itinerario;
 		List<Itinerario> itinerarios = new ArrayList<>();
-
 		for (Usuario usuario : usuarios) {
 			List<Promocion> promocionesOrdenadasPref = ordenador.ordenarPromociones(usuario, promociones, 1);
 			List<Promocion> promocionesOrdenadasNoPref = ordenador.ordenarPromociones(usuario, promociones, 2);
-			Map<String, Atraccion> atraccionesOrdenadasPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones, 1);
-			Map<String, Atraccion> atraccionesOrdenadasNoPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones, 2);
+			Map<String, Atraccion> atraccionesOrdenadasPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,
+					atracciones, 1);
+			Map<String, Atraccion> atraccionesOrdenadasNoPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,
+					atracciones, 2);
 
 			itinerario = new Itinerario(usuario);
 			interfaz.saludarUsuario(usuario.getNombre());
@@ -48,10 +57,7 @@ public class SistemaDeSugerencia {
 			System.out.println("Resultado de tu compra\n");
 			itinerario.mostrar();
 		}
-
-		Archivo archivoItinerario = new Archivo("Itinerario");
-		archivoItinerario.crearArchivoItinerario(itinerarios);
-
+		return itinerarios;
 	}
 
 	public void procesarCompraAtraccion(Atraccion atraccion, Usuario usuario, Itinerario itinerario) {

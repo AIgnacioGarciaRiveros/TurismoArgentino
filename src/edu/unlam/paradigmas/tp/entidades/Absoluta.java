@@ -16,4 +16,8 @@ public class Absoluta extends Promocion {
 		return getPrecioOriginal() - PRECIO_FIJO;
 	}
 
+	public static  double getPrecioFijo() {
+		return PRECIO_FIJO;
+	}
+
 }

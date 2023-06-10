@@ -20,16 +20,13 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccionObtenida = it.next();
 
 		Assert.assertEquals(atraccion, atraccionObtenida);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
-
+	
 	@Test
-	public void queActualizaDisponibilidadAtraccion() {
+	public void queActualizaDisponibilidadAtraccionParaClienteNuevo() {
 		Map<String, Atraccion> atracciones = new LinkedHashMap<>();
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
-		atraccion.setDisponibilidad(false); // preguntar resto del grupo
+		atraccion.setDisponibilidad(false); 
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
 		boolean resultadoEsperado = true;
@@ -38,9 +35,6 @@ public class OfertadorAtraccionesTest {
 		boolean resultadoObtenido = atracciones.get(atraccion.getNombre()).getDisponibilidad();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -56,9 +50,6 @@ public class OfertadorAtraccionesTest {
 		double resultadoObtenido = usuario.getTiempoDisponible();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido, 0.001);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -74,9 +65,6 @@ public class OfertadorAtraccionesTest {
 		double resultadoObtenido = usuario.getPresupuesto();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido, 0.001);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -91,9 +79,6 @@ public class OfertadorAtraccionesTest {
 		int resultadoObtenido = atracciones.get(atraccion.getNombre()).getCupoDiario();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -107,9 +92,6 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccionObtenida = it.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -123,9 +105,6 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccionObtenida = it.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -139,16 +118,13 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccionObtenida = it.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
 	public void queYaFueComprada() {
 		Map<String, Atraccion> atracciones = new LinkedHashMap<>();
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
-		atraccion.setDisponibilidad(false); // preguntar resto del grupo
+		atraccion.setDisponibilidad(false);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
 		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
@@ -156,9 +132,6 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccionObtenida = it.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 	@Test
@@ -170,9 +143,6 @@ public class OfertadorAtraccionesTest {
 		boolean resultadoObtenido = it.hasNext();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido);
-		/*
-		 * atracciones = null; atraccion = null; usuario = null; it = null;
-		 */
 	}
 
 }
