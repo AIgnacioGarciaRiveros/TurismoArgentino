@@ -31,7 +31,7 @@ public class PromocionIteratorImpl implements PromocionIterator {
 			throw new NoSuchElementException();
 		}
 		Promocion promocion = promociones.get(posicion);
-		boolean atraccionesDisponibles = atraccionesDisponibles(promocion.getAtracciones());
+		boolean atraccionesDisponibles = obtenerAtraccionesDisponibles(promocion.getAtracciones());
 		while (promocion.getDuracion() > usuario.getTiempoDisponible()
 				|| promocion.getPrecioConDescuento() > usuario.getPresupuesto() || !atraccionesDisponibles) {
 			posicion++;
@@ -40,7 +40,7 @@ public class PromocionIteratorImpl implements PromocionIterator {
 				throw new NoSuchElementException();
 
 			promocion = promociones.get(posicion);
-			atraccionesDisponibles = atraccionesDisponibles(promocion.getAtracciones());
+			atraccionesDisponibles = obtenerAtraccionesDisponibles(promocion.getAtracciones());
 		}
 		posicion++;
 		return promocion;
@@ -51,13 +51,15 @@ public class PromocionIteratorImpl implements PromocionIterator {
 		posicion = 0;
 	}
 
-	private boolean atraccionesDisponibles(Atraccion[] atraccionesIncluidas) {
+	private boolean obtenerAtraccionesDisponibles(Atraccion[] atraccionesIncluidas) {
 		boolean disponible = true;
 		for (int i = 0; i < atraccionesIncluidas.length && disponible; i++) {
-			disponible = atracciones.get(atraccionesIncluidas[i].getNombre()).getEstaDisponible();
+			disponible = atracciones.get(atraccionesIncluidas[i].getNombre()).getDisponibilidad();
 			if (!disponible)
-				atracciones.get(atraccionesIncluidas[i].getNombre()).setEstaDisponible(disponible);
+				atracciones.get(atraccionesIncluidas[i].getNombre()).setDisponibilidad(disponible);
 		}
 		return disponible;
 	}
+	
+
 }

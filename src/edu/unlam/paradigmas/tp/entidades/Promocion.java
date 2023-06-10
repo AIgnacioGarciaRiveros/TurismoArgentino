@@ -11,7 +11,6 @@ public abstract class Promocion implements Comparable<Promocion> {
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Atraccion[] atracciones;
 	private TipoDePromocion tipoDePromocion;
-
 	private double precioOriginal;
 	private double precioConDescuento;
 	private double duracion;
@@ -21,8 +20,6 @@ public abstract class Promocion implements Comparable<Promocion> {
 		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.atracciones = atracciones;
 		this.tipoDePromocion = tipoDePromocion;
-
-		// PREGUNTAR
 		this.precioOriginal = calcularPrecioOriginal();
 		this.precioConDescuento = calcularPrecioConDescuento();
 		this.duracion = calcularDuracion();
@@ -81,7 +78,7 @@ public abstract class Promocion implements Comparable<Promocion> {
 	@Override
 	public String toString() {
 		return "Promocion \n\n" + String.format("%-24s", "-Tipo de atraccion: ")
-				+ Atraccion.formatoTipoDeAtraccion(tipoDeAtraccion) + "\n-Atracciones incluidas:"
+				+ Atraccion.formatearTipoAtraccion(tipoDeAtraccion) + "\n-Atracciones incluidas:"
 				+ obtenerNombresAtracciones() + "\n-Duracion: \t\t" + duracion + " horas\n-Precio original: \t$"
 				+ precioOriginal + "\n-Precio con descuento:  $" + precioConDescuento + "\n";
 	}

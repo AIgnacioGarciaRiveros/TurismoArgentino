@@ -15,7 +15,7 @@ import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 public class FuncionalidadesPromocionesTests {
 
 	@Test
-	public void usuarios() {
+	public void queLeeArchivoUsuarios() {
 		Archivo archivoUsuarios = new Archivo("UsuariosTest");
 		List<Usuario> resultadoObtenido = archivoUsuarios.leerArchivoUsuario();
 
@@ -28,21 +28,19 @@ public class FuncionalidadesPromocionesTests {
 	}
 
 	@Test
-	public void atracciones() {
+	public void queLeeArchivoAtracciones() {
 		Archivo archivoAtracciones = new Archivo("AtraccionesTest");
 		Map<String, Atraccion> resultadoObtenido = archivoAtracciones.leerArchivoAtraccion();
-
 		Map<String, Atraccion> resultadoEsperado = new HashMap<>();
 		resultadoEsperado.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
-		resultadoEsperado.put("BodegasChandon",
-				new Atraccion("BodegasChandon", 4100, 3, 20, TipoDeAtraccion.DEGUSTACION));
+		resultadoEsperado.put("BodegasChandon",new Atraccion("BodegasChandon", 4100, 3, 20, TipoDeAtraccion.DEGUSTACION));
 		resultadoEsperado.put("LosCardones", new Atraccion("LosCardones", 3267, 5, 2, TipoDeAtraccion.PAISAJE));
 
 		assertEquals(resultadoEsperado, resultadoObtenido);
 	}
 
 	@Test
-	public void promociones() {
+	public void queLeeArchivoPromociones() {
 
 		Map<String, Atraccion> mapaAtracciones = new HashMap<>();
 		mapaAtracciones.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class InterfazUsuario {
 
-	public void iniciarSistema(String nombreUsuario) {
+	public void saludarUsuario(String nombreUsuario) {
 		System.out.println("======================== Bienvenido a Turismo Argentino ========================\n");
 		System.out.println("Nombre visitante: " + nombreUsuario);
 	}
@@ -20,7 +20,7 @@ public class InterfazUsuario {
 		Promocion promocion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
 				+ "\n-Tiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
-				+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
+				+ Atraccion.formatearTipoAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 		PromocionIteratorImpl promocionIt = new PromocionIteratorImpl(promociones, usuario, atracciones);
 		while (promocionIt.hasNext()) {
 			try {
@@ -35,7 +35,7 @@ public class InterfazUsuario {
 					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
 							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
 							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
-							+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
+							+ Atraccion.formatearTipoAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 				}
 
 			} catch (NoSuchElementException e) {
@@ -53,7 +53,7 @@ public class InterfazUsuario {
 		Atraccion atraccion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
 				+ "\n-Tiempo: " + String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
-				+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
+				+ Atraccion.formatearTipoAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 		AtraccionIteratorImpl atraccionIt = new AtraccionIteratorImpl(atracciones, usuario);
 		while (atraccionIt.hasNext()) {
 
@@ -69,7 +69,7 @@ public class InterfazUsuario {
 					System.out.println("\nTus recursos:" + "\n-Presupuesto: $"
 							+ String.format("%.2f", usuario.getPresupuesto()) + "\n-Tiempo: "
 							+ String.format("%.2f", usuario.getTiempoDisponible()) + "\n-Tu preferencia: "
-							+ Atraccion.formatoTipoDeAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
+							+ Atraccion.formatearTipoAtraccion(usuario.getAtraccionFavorita()) + "\n\n");
 				}
 			} else
 				System.out.println("\nNo hay mas opciones para tus recursos\n");

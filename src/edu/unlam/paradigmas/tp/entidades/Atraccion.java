@@ -11,7 +11,7 @@ public class Atraccion {
 	private double tiempo;
 	private int cupoDiario;
 	private TipoDeAtraccion tipo;
-	private boolean estaDisponible;
+	private boolean disponibilidad;
 
 	public Atraccion() {
 	}
@@ -22,7 +22,7 @@ public class Atraccion {
 		this.tiempo = tiempo;
 		this.cupoDiario = cupoDiario;
 		this.tipo = tipo;
-		this.estaDisponible = true;
+		this.disponibilidad = true;
 	}
 
 	public String getNombre() {
@@ -65,15 +65,15 @@ public class Atraccion {
 		this.tipo = tipo;
 	}
 
-	public boolean getEstaDisponible() {
-		return estaDisponible;
+	public boolean getDisponibilidad() {
+		return disponibilidad;
 	}
 
-	public void setEstaDisponible(boolean estaDisponible) {
-		this.estaDisponible = estaDisponible;
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 
-	public static String formatoTipoDeAtraccion(TipoDeAtraccion tipoDeAtraccion) {
+	public static String formatearTipoAtraccion(TipoDeAtraccion tipoDeAtraccion) {
 		String tipoDeAtraccionFormateada = tipoDeAtraccion.toString();
 		String primerCaracter = tipoDeAtraccionFormateada.charAt(0) + "";
 		String restoDelString = tipoDeAtraccionFormateada.substring(1).toLowerCase();
@@ -82,7 +82,7 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "Atraccion \n" + String.format("%-11s", "-Tipo:") + formatoTipoDeAtraccion(tipo) + "\n-Nombre:  "
+		return "Atraccion \n" + String.format("%-11s", "-Tipo:") + formatearTipoAtraccion(tipo) + "\n-Nombre:  "
 				+ nombre.replaceAll("(?=[A-Z])", " ") + "\n-Precio:   $" + precio + "\n-Duracion: " + tiempo
 				+ " horas\n";
 	}

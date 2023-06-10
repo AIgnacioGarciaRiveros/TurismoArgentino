@@ -34,19 +34,19 @@ public class SistemaDeSugerencia {
 			Map<String, Atraccion> atraccionesOrdenadasNoPref = ordenador.ordenarAtraccionesPorPreferencia(usuario,atracciones, 2);
 
 			itinerario = new Itinerario(usuario);
-			interfaz.iniciarSistema(usuario.getNombre());
+			interfaz.saludarUsuario(usuario.getNombre());
 			interfaz.sugerirPromociones(promocionesOrdenadasPref, atraccionesOrdenadasPref, usuario, itinerario);
 			interfaz.sugerirAtracciones(atraccionesOrdenadasPref, usuario, itinerario);
 			interfaz.sugerirPromociones(promocionesOrdenadasNoPref, atraccionesOrdenadasNoPref, usuario, itinerario);
 			interfaz.sugerirAtracciones(atraccionesOrdenadasNoPref, usuario, itinerario);
 
-			resetearEstaDisponible(atraccionesOrdenadasPref);
-			resetearEstaDisponible(atraccionesOrdenadasNoPref);
+			actualizarDisponibilidadAtraccion(atraccionesOrdenadasPref);
+			actualizarDisponibilidadAtraccion(atraccionesOrdenadasNoPref);
 
 			itinerarios.add(itinerario);
 
 			System.out.println("Resultado de tu compra\n");
-			itinerario.mostrarItinerario();
+			itinerario.mostrar();
 		}
 
 		Archivo archivoItinerario = new Archivo("Itinerario");
@@ -58,7 +58,7 @@ public class SistemaDeSugerencia {
 		usuario.setPresupuesto(usuario.getPresupuesto() - atraccion.getPrecio());
 		usuario.setTiempoDisponible(usuario.getTiempoDisponible() - atraccion.getTiempo());
 		itinerario.agregarAtraccion(atraccion);
-		atraccion.setEstaDisponible(false);
+		atraccion.setDisponibilidad(false);
 		atraccion.setCupoDiario(atraccion.getCupoDiario() - 1);
 	}
 
@@ -70,16 +70,16 @@ public class SistemaDeSugerencia {
 		Atraccion[] atraccionesOfertadas = promocion.getAtracciones();
 		for (int i = 0; i < atraccionesOfertadas.length; i++) {
 			Atraccion atraccionEncontrada = atracciones.get(atraccionesOfertadas[i].getNombre());
-			atraccionEncontrada.setEstaDisponible(false);
+			atraccionEncontrada.setDisponibilidad(false);
 			atraccionEncontrada.setCupoDiario(atraccionEncontrada.getCupoDiario() - 1);
 		}
 	}
 
-	public void resetearEstaDisponible(Map<String, Atraccion> atracciones) {
+	public void actualizarDisponibilidadAtraccion(Map<String, Atraccion> atracciones) {
 		for (Map.Entry<String, Atraccion> entry : atracciones.entrySet()) {
 			Atraccion atraccion = entry.getValue();
-			if (atraccion.getCupoDiario() != 0 && atraccion.getEstaDisponible() == false)
-				atraccion.setEstaDisponible(true);
+			if (atraccion.getCupoDiario() != 0 && atraccion.getDisponibilidad() == false)
+				atraccion.setDisponibilidad(true);
 		}
 	}
 
