@@ -25,44 +25,20 @@ public class AtraccionIteratorImpl implements AtraccionIterator {
 	}
 
 	@Override
-//	public Atraccion next() {
-//		List<Atraccion> atraccionesList = new ArrayList<>(atracciones.values());
-//		Atraccion atraccion = null;
-//		if (posicion < atraccionesList.size()) {
-//			atraccion = atraccionesList.get(posicion);
-//		}
-//		while (atraccion.getCupoDiario() == 0 || atraccion.getPrecio() > usuario.getPresupuesto()
-//				|| atraccion.getTiempo() > usuario.getTiempoDisponible() || !atraccion.getEstaDisponible()) {
-//			posicion++;
-//			if (posicion < atraccionesList.size()) {
-//				atraccion = atraccionesList.get(posicion);
-//			}
-//		}
-//		if (posicion == atraccionesList.size() && atraccion != null) {
-//			atraccion = null;
-//		} else if (atraccion != null) {
-//			posicion++;
-//		}
-//		return atraccion;
-//	}
-//	CAMBIAMOS
 	public Atraccion next() {
-	    List<Atraccion> atraccionesList = new ArrayList<>(atracciones.values());
-	    Atraccion atraccion = null;
-		if (posicion < atraccionesList.size()) {
+		List<Atraccion> atraccionesList = new ArrayList<>(atracciones.values());
+		Atraccion atraccion = null;
+		while (posicion < atraccionesList.size()) {
 			atraccion = atraccionesList.get(posicion);
+			if (atraccion.getCupoDiario() == 0 || atraccion.getPrecio() > usuario.getPresupuesto()
+					|| atraccion.getTiempo() > usuario.getTiempoDisponible() || !atraccion.getEstaDisponible()) {
+				posicion++;
+			} else {
+				posicion++;
+				return atraccion; // Return the atraccion that meets the conditions
+			}
 		}
-	    while (posicion < atraccionesList.size()) {
-	        atraccion = atraccionesList.get(posicion);
-	        if (atraccion.getCupoDiario() == 0 || atraccion.getPrecio() > usuario.getPresupuesto()
-	                || atraccion.getTiempo() > usuario.getTiempoDisponible() || !atraccion.getEstaDisponible()) {
-	            posicion++;
-	        } else {
-	            posicion++;
-	            return atraccion; // Return the atraccion that meets the conditions
-	        }
-	    }
-	    return null; // No more atracciones available
+		return null; // No more atracciones available
 	}
 
 	@Override

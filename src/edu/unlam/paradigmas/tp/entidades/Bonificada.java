@@ -19,7 +19,7 @@ public class Bonificada extends Promocion {
 			if (atracciones[i].getPrecio() < precioMinimo)
 				precioMinimo = atracciones[i].getPrecio();
 		}
-		
+
 		return getPrecioOriginal() - precioMinimo;
 	}
 }
