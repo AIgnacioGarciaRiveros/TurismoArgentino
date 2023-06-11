@@ -16,19 +16,24 @@ import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 
 public class Archivo {
 
+	public static final String RUTA_ARCHIVOS_ENTRADA = "archivos/in/";
+	public static final String RUTA_ARCHIVOS_TESTS_ENTRADA = "archivos/test/in/";
+	public static final String RUTA_ARCHIVOS_SALIDA = "archivos/out/";
+	public static final String RUTA_ARCHIVOS_TESTS_SALIDA = "archivos/test/out/";
+
 	private String nombre;
 
 	public Archivo(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public List<Usuario> leerArchivoUsuario() {
+	public List<Usuario> leerArchivoUsuario(String rutaArchivo) {
 
 		Scanner scanner = null;
 		List<Usuario> usuarios = new ArrayList<>();
 
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -47,13 +52,13 @@ public class Archivo {
 		return usuarios;
 	}
 
-	public Map<String, Atraccion> leerArchivoAtraccion() {
+	public Map<String, Atraccion> leerArchivoAtraccion(String rutaArchivo) {
 
 		Scanner scanner = null;
 		Map<String, Atraccion> atracciones = new HashMap<>();
 
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -73,13 +78,13 @@ public class Archivo {
 		return atracciones;
 	}
 
-	public List<Promocion> leerArchivoPromocion(Map<String, Atraccion> atracciones) {
+	public List<Promocion> leerArchivoPromocion(Map<String, Atraccion> atracciones, String rutaArchivo) {
 
 		Scanner scanner = null;
 		List<Promocion> promociones = new ArrayList<>();
 
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -135,11 +140,11 @@ public class Archivo {
 		}
 	}
 
-	public void crearArchivoItinerario(List<Itinerario> itinerario) {
+	public void crearArchivoItinerario(List<Itinerario> itinerario,String rutaArchivo) {
 		FileWriter file = null;
 		PrintWriter printWriter = null;
 		try {
-			file = new FileWriter("archivos/" + this.nombre + ".out");
+			file = new FileWriter(rutaArchivo + this.nombre + ".out");
 			printWriter = new PrintWriter(file);
 
 			printWriter.println("==================== Bienvenido a Turismo Argentino ====================\n");

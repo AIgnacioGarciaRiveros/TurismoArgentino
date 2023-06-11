@@ -28,7 +28,6 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
 		atraccion.setDisponibilidad(false);
 		atracciones.put(atraccion.getNombre(), atraccion);
-		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
 		boolean resultadoEsperado = true;
 		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		sistema.actualizarDisponibilidadAtraccion(atracciones);

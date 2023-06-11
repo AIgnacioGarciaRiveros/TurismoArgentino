@@ -11,20 +11,20 @@ public class SistemaDeSugerencia {
 
 		Archivo archivoUsuario = new Archivo("UsuariosTest");
 		List<Usuario> usuarios = new ArrayList<>();
-		usuarios = archivoUsuario.leerArchivoUsuario();
+		usuarios = archivoUsuario.leerArchivoUsuario(Archivo.RUTA_ARCHIVOS_TESTS_ENTRADA);
 
 		Archivo archivoAtraccion = new Archivo("Atracciones");
 		Map<String, Atraccion> atracciones = new HashMap<>();
-		atracciones = archivoAtraccion.leerArchivoAtraccion();
+		atracciones = archivoAtraccion.leerArchivoAtraccion(Archivo.RUTA_ARCHIVOS_ENTRADA);
 
 		Archivo archivoPromocion = new Archivo("Promociones");
 		List<Promocion> promociones = new ArrayList<>();
-		promociones = archivoPromocion.leerArchivoPromocion(atracciones);
+		promociones = archivoPromocion.leerArchivoPromocion(atracciones,Archivo.RUTA_ARCHIVOS_ENTRADA);
 
 		List<Itinerario> itinerarios = ofertarAUsuarios(usuarios, atracciones, promociones);
 
 		Archivo archivoItinerario = new Archivo("Itinerario");
-		archivoItinerario.crearArchivoItinerario(itinerarios);
+		archivoItinerario.crearArchivoItinerario(itinerarios,Archivo.RUTA_ARCHIVOS_SALIDA);
 
 	}
 

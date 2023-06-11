@@ -30,8 +30,7 @@ public class OfertadorPromocionesTest {
 		atracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
 		Usuario usuario = new Usuario("Maria", 18500, 1, TipoDeAtraccion.AVENTURA);
 		PromocionIteratorImpl it = new PromocionIteratorImpl(promociones, usuario, atracciones);
-
-		Promocion promocionObtenida = it.next();
+		it.next();
 	}
 
 	@Test(expected = NoSuchElementException.class)
@@ -49,8 +48,7 @@ public class OfertadorPromocionesTest {
 		atracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
 		Usuario usuario = new Usuario("Maria", 18500, 1, TipoDeAtraccion.AVENTURA);
 		PromocionIteratorImpl it = new PromocionIteratorImpl(promociones, usuario, atracciones);
-
-		Promocion promocionObtenida = it.next();
+		it.next();
 	}
 
 	@Test(expected = NoSuchElementException.class)
@@ -68,8 +66,7 @@ public class OfertadorPromocionesTest {
 		atracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
 		Usuario usuario = new Usuario("Maria", 100, 15, TipoDeAtraccion.AVENTURA);
 		PromocionIteratorImpl it = new PromocionIteratorImpl(promociones, usuario, atracciones);
-
-		Promocion promocionObtenida = it.next();
+		it.next();
 	}
 
 	@Test(expected = NoSuchElementException.class)
@@ -88,8 +85,7 @@ public class OfertadorPromocionesTest {
 		atracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.AVENTURA);
 		PromocionIteratorImpl it = new PromocionIteratorImpl(promociones, usuario, atracciones);
-
-		Promocion promocionObtenida = it.next();
+		it.next();
 
 	}
 
