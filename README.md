@@ -20,3 +20,4 @@
     https://drive.google.com/file/d/1khpMRF54y8zWJDMQD8_FEp2DxCCWnqsj/view
 
 # Tecnologías Utilizadas: Java (Version 17).
+# Archivos de Windows
