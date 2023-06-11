@@ -33,7 +33,7 @@ public class Archivo {
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
 
-			scanner.nextLine(); 
+			scanner.nextLine();
 
 			while (scanner.hasNext())
 				usuarios.add(new Usuario(scanner.next(), scanner.nextDouble(), scanner.nextDouble(),

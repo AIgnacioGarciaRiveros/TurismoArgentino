@@ -14,7 +14,7 @@ public class Itinerario {
 		promociones = new ArrayList<>();
 		atracciones = new ArrayList<>();
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -62,7 +62,7 @@ public class Itinerario {
 			duracionTotal += promocion.getDuracion();
 		return duracionTotal;
 	}
-	
+
 	public void mostrar() {
 
 		System.out.println("Usuario: " + usuario.getNombre() + "\n");

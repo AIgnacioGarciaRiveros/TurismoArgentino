@@ -15,7 +15,7 @@ public class InterfazUsuario {
 	public void sugerirPromociones(List<Promocion> promociones, Map<String, Atraccion> atracciones, Usuario usuario,
 			Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
-		SistemaDeSugerencia sistema= new SistemaDeSugerencia();
+		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		char respuestaUsuario;
 		Promocion promocion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())
@@ -48,7 +48,7 @@ public class InterfazUsuario {
 
 	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario, Itinerario itinerario) {
 		Scanner scanner = new Scanner(System.in);
-		SistemaDeSugerencia sistema= new SistemaDeSugerencia();
+		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
 		char respuestaUsuario;
 		Atraccion atraccion;
 		System.out.println("\nTus recursos:" + "\n-Presupuesto: $" + String.format("%.2f", usuario.getPresupuesto())

@@ -60,6 +60,5 @@ public class PromocionIteratorImpl implements PromocionIterator {
 		}
 		return disponible;
 	}
-	
 
 }

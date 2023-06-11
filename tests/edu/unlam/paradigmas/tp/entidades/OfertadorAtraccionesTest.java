@@ -21,12 +21,12 @@ public class OfertadorAtraccionesTest {
 
 		Assert.assertEquals(atraccion, atraccionObtenida);
 	}
-	
+
 	@Test
 	public void queActualizaDisponibilidadAtraccionParaClienteNuevo() {
 		Map<String, Atraccion> atracciones = new LinkedHashMap<>();
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
-		atraccion.setDisponibilidad(false); 
+		atraccion.setDisponibilidad(false);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
 		boolean resultadoEsperado = true;

@@ -35,10 +35,10 @@ public class AtraccionIteratorImpl implements AtraccionIterator {
 				posicion++;
 			} else {
 				posicion++;
-				return atraccion; // devolver la atraccion que cumple las condiciones
+				return atraccion;
 			}
 		}
-		return null; // No hay mas atracciones disponibles
+		return null;
 	}
 
 	@Override
