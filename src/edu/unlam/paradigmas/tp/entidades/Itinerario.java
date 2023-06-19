@@ -14,7 +14,7 @@ public class Itinerario {
 		promociones = new ArrayList<>();
 		atracciones = new ArrayList<>();
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -35,35 +35,35 @@ public class Itinerario {
 		promociones.add(promocion);
 	}
 
-	public double obtenerPrecioDeAtracciones() {
+	public double obtenerPrecioAtracciones() {
 		double precioTotal = 0;
 		for (Atraccion atraccion : atracciones)
 			precioTotal += atraccion.getPrecio();
 		return precioTotal;
 	}
 
-	public double obtenerPrecioDePromociones() {
+	public double obtenerPrecioPromociones() {
 		double precioTotal = 0;
 		for (Promocion promocion : promociones)
 			precioTotal += promocion.getPrecioConDescuento();
 		return precioTotal;
 	}
 
-	public double obtenerDuracionDeAtracciones() {
+	public double obtenerDuracionAtracciones() {
 		double duracionTotal = 0;
 		for (Atraccion atraccion : atracciones)
 			duracionTotal += atraccion.getTiempo();
 		return duracionTotal;
 	}
 
-	public double obtenerDuracionDePromociones() {
+	public double obtenerDuracionPromociones() {
 		double duracionTotal = 0;
 		for (Promocion promocion : promociones)
 			duracionTotal += promocion.getDuracion();
 		return duracionTotal;
 	}
-	
-	public void mostrarItinerario() {
+
+	public void mostrar() {
 
 		System.out.println("Usuario: " + usuario.getNombre() + "\n");
 		System.out.println("======================== Promociones adquiridas ========================\n");
@@ -83,8 +83,8 @@ public class Itinerario {
 				}
 				System.out.println("\n");
 			}
-			System.out.println(String.format("%-34s", "- Total de promociones") + obtenerDuracionDePromociones()
-					+ " horas" + String.format("%28s", "$" + obtenerPrecioDePromociones()));
+			System.out.println(String.format("%-34s", "- Total de promociones") + obtenerDuracionPromociones()
+					+ " horas" + String.format("%28s", "$" + obtenerPrecioPromociones()));
 
 		} else {
 			System.out.println("El usuario no adquirio ninguna promocion");
@@ -99,29 +99,12 @@ public class Itinerario {
 						+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
 						+ String.format("%-30s", atraccion.getPrecio()));
 			}
-			System.out.println("\n" + String.format("%-34s", "- Total de atracciones") + obtenerDuracionDeAtracciones()
-					+ " horas" + String.format("%28s", "$" + obtenerPrecioDeAtracciones()));
+			System.out.println("\n" + String.format("%-34s", "- Total de atracciones") + obtenerDuracionAtracciones()
+					+ " horas" + String.format("%28s", "$" + obtenerPrecioAtracciones()));
 			System.out.println("\n========================================================================\n");
 		} else {
 			System.out.println("El usuario no adquirio ninguna atraccion");
 		}
 	}
-
-	/*@Override
-	public String toString() {
-
-		String formatoItinerario = usuario.toString() + "\n\n";
-
-		formatoItinerario += "Promociones\n\n";
-
-		for (int i = 0; i < promociones.size(); i++)
-			formatoItinerario += "Nro " + (i + 1) + ":\n" + promociones.get(i) + "\n";
-
-		formatoItinerario += "\nAtracciones\n\n";
-		for (int i = 0; i < atracciones.size(); i++)
-			formatoItinerario += "Nro " + (i + 1) + ":\n" + atracciones.get(i) + "\n";
-
-		return formatoItinerario;
-	}*/
 
 }

@@ -16,101 +16,49 @@ import edu.unlam.paradigmas.tp.enums.TipoDePromocion;
 
 public class Archivo {
 
+	public static final String RUTA_ARCHIVOS_ENTRADA = "archivos/in/";
+	public static final String RUTA_ARCHIVOS_TESTS_ENTRADA = "archivos/test/in/";
+	public static final String RUTA_ARCHIVOS_SALIDA = "archivos/out/";
+	public static final String RUTA_ARCHIVOS_TESTS_SALIDA = "archivos/test/out/";
+
 	private String nombre;
 
 	public Archivo(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public void grabarItinerarioEnArchivo(String nombreArchivo) {
-		try (PrintWriter escritor = new PrintWriter(new FileWriter(nombreArchivo))) {
+	public List<Usuario> leerArchivoUsuario(String rutaArchivo) {
 
-		} catch (IOException e) {
-			System.err.println("Error al escribir en el archivo: " + e.getMessage());
-		}
-	}
+		Scanner scanner = null;
+		List<Usuario> usuarios = new ArrayList<>();
 
-	public void crearArchivoItinerario(List<Itinerario> itinerario) {
-		FileWriter file = null;
-		PrintWriter printWriter = null;
 		try {
-			file = new FileWriter("archivos/" + this.nombre + ".out");
-			printWriter = new PrintWriter(file);
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
-			printWriter.println("==================== Bienvenido a Turismo Argentino ====================\n");
+			scanner = new Scanner(file);
+			scanner.useLocale(Locale.ENGLISH);
 
-			for (Itinerario itinerarioPorUsuario : itinerario) {
-				printWriter.println("Usuario: " + itinerarioPorUsuario.getUsuario().getNombre() + "\n");
-				printWriter.println("======================== Promociones adquiridas ========================\n");
+			scanner.nextLine();
 
-				int numeroDePromocion = 1;
-				if (itinerarioPorUsuario.getPromociones().size() > 0) {
-					for (Promocion promocion : itinerarioPorUsuario.getPromociones()) {
-						printWriter.println("     Promocion Nro " + numeroDePromocion++ + "\n");
-						printWriter.println("     " + String.format("%-29s", "Nombre")
-								+ String.format("%-30s", "Duracion") + String.format("%-30s", "Precio") + "\n");
-						for (Atraccion atraccion : promocion.getAtracciones()) {
-							printWriter.println(
-									"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
-											+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
-											+ String.format("%-30s", atraccion.getPrecio()));
-						}
-						printWriter.println("\n");
-					}
-					printWriter.println(String.format("%-34s", "- Total de promociones")
-							+ itinerarioPorUsuario.obtenerDuracionDePromociones() + " horas"
-							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioDePromociones()));
-
-				} else {
-					printWriter.println("El usuario no adquirio ninguna promocion");
-				}
-
-				printWriter.println("\n======================== Atracciones adquiridas ========================\n");
-				if (itinerarioPorUsuario.getAtracciones().size() > 0) {
-					printWriter.println("     " + String.format("%-29s", "Nombre") + String.format("%-30s", "Duracion")
-							+ String.format("%-30s", "Precio") + "\n");
-					for (Atraccion atraccion : itinerarioPorUsuario.getAtracciones()) {
-						printWriter.println(
-								"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
-										+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
-										+ String.format("%-30s", atraccion.getPrecio()));
-					}
-					printWriter.println("\n" + String.format("%-34s", "- Total de atracciones")
-							+ itinerarioPorUsuario.obtenerDuracionDeAtracciones() + " horas"
-							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioDeAtracciones()));
-				} else {
-					printWriter.println("El usuario no adquirio ninguna atraccion");
-				}
-
-				printWriter.println("\n" + String.format("%-34s", "- Total por usuario")
-						+ (itinerarioPorUsuario.obtenerDuracionDeAtracciones()
-								+ itinerarioPorUsuario.obtenerDuracionDePromociones())
-						+ " horas" + String.format("%28s", "$" + (itinerarioPorUsuario.obtenerPrecioDeAtracciones()
-								+ itinerarioPorUsuario.obtenerPrecioDePromociones())));
-
-				printWriter.println("\n========================================================================\n");
-			}
+			while (scanner.hasNext())
+				usuarios.add(new Usuario(scanner.next(), scanner.nextDouble(), scanner.nextDouble(),
+						TipoDeAtraccion.valueOf(scanner.next())));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (file != null) {
-				try {
-					file.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+			scanner.close();
 		}
+		return usuarios;
 	}
 
-	public Map<String, Atraccion> leerArchivoAtraccion() {
+	public Map<String, Atraccion> leerArchivoAtraccion(String rutaArchivo) {
 
 		Scanner scanner = null;
 		Map<String, Atraccion> atracciones = new HashMap<>();
 
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -130,13 +78,13 @@ public class Archivo {
 		return atracciones;
 	}
 
-	public List<Promocion> leerArchivoPromocion(Map<String, Atraccion> atracciones) {
+	public List<Promocion> leerArchivoPromocion(Map<String, Atraccion> atracciones, String rutaArchivo) {
 
 		Scanner scanner = null;
 		List<Promocion> promociones = new ArrayList<>();
 
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			File file = new File(rutaArchivo + this.nombre + ".in");
 
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -184,29 +132,86 @@ public class Archivo {
 		return promociones;
 	}
 
-	public List<Usuario> leerArchivoUsuario() {
+	public void grabarItinerarioEnArchivo(String nombreArchivo) {
+		try (PrintWriter escritor = new PrintWriter(new FileWriter(nombreArchivo))) {
 
-		Scanner scanner = null;
-		List<Usuario> usuarios = new ArrayList<>();
+		} catch (IOException e) {
+			System.err.println("Error al escribir en el archivo: " + e.getMessage());
+		}
+	}
 
+	public void crearArchivoItinerario(List<Itinerario> itinerario,String rutaArchivo) {
+		FileWriter file = null;
+		PrintWriter printWriter = null;
 		try {
-			File file = new File("archivos/" + this.nombre + ".in");
+			file = new FileWriter(rutaArchivo + this.nombre + ".out");
+			printWriter = new PrintWriter(file);
 
-			scanner = new Scanner(file);
-			scanner.useLocale(Locale.ENGLISH);
+			printWriter.println("==================== Bienvenido a Turismo Argentino ====================\n");
 
-			scanner.nextLine(); // Saco la linea de titulos
+			for (Itinerario itinerarioPorUsuario : itinerario) {
+				printWriter.println("Usuario: " + itinerarioPorUsuario.getUsuario().getNombre() + "\n");
+				printWriter.println("======================== Promociones adquiridas ========================\n");
 
-			while (scanner.hasNext())
-				usuarios.add(new Usuario(scanner.next(), scanner.nextDouble(), scanner.nextDouble(),
-						TipoDeAtraccion.valueOf(scanner.next())));
+				int numeroDePromocion = 1;
+				if (itinerarioPorUsuario.getPromociones().size() > 0) {
+					for (Promocion promocion : itinerarioPorUsuario.getPromociones()) {
+						printWriter.println("     Promocion Nro " + numeroDePromocion++ + "\n");
+						printWriter.println("     " + String.format("%-29s", "Nombre")
+								+ String.format("%-30s", "Duracion") + String.format("%-30s", "Precio") + "\n");
+						for (Atraccion atraccion : promocion.getAtracciones()) {
+							printWriter.println(
+									"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+											+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+											+ String.format("%-30s", atraccion.getPrecio()));
+						}
+						printWriter.println("\n");
+					}
+					printWriter.println(String.format("%-34s", "- Total de promociones")
+							+ itinerarioPorUsuario.obtenerDuracionPromociones() + " horas"
+							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioPromociones()));
+
+				} else {
+					printWriter.println("El usuario no adquirio ninguna promocion");
+				}
+
+				printWriter.println("\n======================== Atracciones adquiridas ========================\n");
+				if (itinerarioPorUsuario.getAtracciones().size() > 0) {
+					printWriter.println("     " + String.format("%-29s", "Nombre") + String.format("%-30s", "Duracion")
+							+ String.format("%-30s", "Precio") + "\n");
+					for (Atraccion atraccion : itinerarioPorUsuario.getAtracciones()) {
+						printWriter.println(
+								"    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+										+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+										+ String.format("%-30s", atraccion.getPrecio()));
+					}
+					printWriter.println("\n" + String.format("%-34s", "- Total de atracciones")
+							+ itinerarioPorUsuario.obtenerDuracionAtracciones() + " horas"
+							+ String.format("%28s", "$" + itinerarioPorUsuario.obtenerPrecioAtracciones()));
+				} else {
+					printWriter.println("El usuario no adquirio ninguna atraccion");
+				}
+
+				printWriter.println("\n" + String.format("%-34s", "- Total por usuario")
+						+ (itinerarioPorUsuario.obtenerDuracionAtracciones()
+								+ itinerarioPorUsuario.obtenerDuracionPromociones())
+						+ " horas" + String.format("%28s", "$" + (itinerarioPorUsuario.obtenerPrecioAtracciones()
+								+ itinerarioPorUsuario.obtenerPrecioPromociones())));
+
+				printWriter.println("\n========================================================================\n");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			scanner.close();
+			if (file != null) {
+				try {
+					file.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return usuarios;
 	}
 
 }

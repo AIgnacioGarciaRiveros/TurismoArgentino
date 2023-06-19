@@ -31,14 +31,14 @@ public class AtraccionIteratorImpl implements AtraccionIterator {
 		while (posicion < atraccionesList.size()) {
 			atraccion = atraccionesList.get(posicion);
 			if (atraccion.getCupoDiario() == 0 || atraccion.getPrecio() > usuario.getPresupuesto()
-					|| atraccion.getTiempo() > usuario.getTiempoDisponible() || !atraccion.getEstaDisponible()) {
+					|| atraccion.getTiempo() > usuario.getTiempoDisponible() || !atraccion.getDisponibilidad()) {
 				posicion++;
 			} else {
 				posicion++;
-				return atraccion; // Return the atraccion that meets the conditions
+				return atraccion;
 			}
 		}
-		return null; // No more atracciones available
+		return null;
 	}
 
 	@Override
