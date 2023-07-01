@@ -8,7 +8,7 @@
 # Alumnos: 
 <p> - Bianchi Juan Alberto</p>
 <p> - Garcia Riveros Agustin Ignacio </p>
-<p> - Loeiro Federico Nicolas</p>
+<p> - Loiero Federico Nicolas</p>
 <p> - Ocampo Nicole Fabiana</p>
 <p> - Orzo Larrosa Melody Micaela</p>
 <p> - Sandoval Vazquez Juan Leandro</p>
@@ -19,4 +19,7 @@
 # Link Video: 
     https://drive.google.com/file/d/1khpMRF54y8zWJDMQD8_FEp2DxCCWnqsj/view
 
-# Tecnologías Utilizadas: Java (Version 17).
+# Inicio de Programa
+Pararse en el paquete src/edu/unlam/paradigmas/tp/principal y ejecutar la clase Main.
+
+# Text file line delimiter Windows
