@@ -8,7 +8,7 @@
 # Alumnos: 
 <p> - Bianchi Juan Alberto</p>
 <p> - Garcia Riveros Agustin Ignacio </p>
-<p> - Loeiro Federico Nicolas</p>
+<p> - Loiero Federico Nicolas</p>
 <p> - Ocampo Nicole Fabiana</p>
 <p> - Orzo Larrosa Melody Micaela</p>
 <p> - Sandoval Vazquez Juan Leandro</p>
