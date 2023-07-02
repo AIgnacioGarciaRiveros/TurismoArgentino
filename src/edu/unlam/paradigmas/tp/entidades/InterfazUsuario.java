@@ -76,4 +76,50 @@ public class InterfazUsuario {
 		}
 		System.out.println("========================================================================\n");
 	}
+	
+	public void mostrarItinerario(Itinerario itinerario) {
+		System.out.println("Resultado de tu compra\n");
+		System.out.println("Usuario: " + itinerario.getUsuario().getNombre() + "\n");
+		System.out.println("======================== Promociones adquiridas ========================\n");
+
+		int numeroDePromocion = 1;
+		List<Promocion> promociones = itinerario.getPromociones();
+		if (promociones.size() > 0) {
+			for (Promocion promocion : promociones) {
+				System.out.println("     Promocion Nro " + numeroDePromocion++ + "\n");
+				System.out.println("     " + String.format("%-29s", "Nombre") + String.format("%-30s", "Duracion")
+						+ String.format("%-30s", "Precio") + "\n");
+				for (Atraccion atraccion : promocion.getAtracciones()) {
+
+					System.out
+							.println("    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+									+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+									+ String.format("%-30s", atraccion.getPrecio()));
+				}
+				System.out.println("\n");
+			}
+			System.out.println(String.format("%-34s", "- Total de promociones") + itinerario.obtenerDuracionPromociones()
+					+ " horas" + String.format("%28s", "$" + itinerario.obtenerPrecioPromociones()));
+
+		} else {
+			System.out.println("El usuario no adquirio ninguna promocion");
+		}
+
+		System.out.println("\n======================== Atracciones adquiridas ========================\n");
+		List<Atraccion> atracciones = itinerario.getAtracciones();
+		if (atracciones.size() > 0) {
+			System.out.println("     " + String.format("%-29s", "Nombre") + String.format("%-30s", "Duracion")
+					+ String.format("%-30s", "Precio") + "\n");
+			for (Atraccion atraccion : atracciones) {
+				System.out.println("    " + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+						+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$"
+						+ String.format("%-30s", atraccion.getPrecio()));
+			}
+			System.out.println("\n" + String.format("%-34s", "- Total de atracciones") + itinerario.obtenerDuracionAtracciones()
+					+ " horas" + String.format("%28s", "$" + itinerario.obtenerPrecioAtracciones()));
+			System.out.println("\n========================================================================\n");
+		} else {
+			System.out.println("El usuario no adquirio ninguna atraccion");
+		}
+	}
 }

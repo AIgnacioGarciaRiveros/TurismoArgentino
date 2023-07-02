@@ -28,25 +28,13 @@ public class Atraccion {
 	public String getNombre() {
 		return nombre;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	
 	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-
 	public double getTiempo() {
 		return tiempo;
-	}
-
-	public void setTiempo(double tiempo) {
-		this.tiempo = tiempo;
 	}
 
 	public int getCupoDiario() {
@@ -59,10 +47,6 @@ public class Atraccion {
 
 	public TipoDeAtraccion getTipo() {
 		return tipo;
-	}
-
-	public void setTipo(TipoDeAtraccion tipo) {
-		this.tipo = tipo;
 	}
 
 	public boolean getDisponibilidad() {

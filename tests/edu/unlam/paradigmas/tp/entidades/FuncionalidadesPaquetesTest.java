@@ -60,11 +60,13 @@ public class FuncionalidadesPaquetesTest {
 	@Test
 	public void queLeeArchivoAtracciones() {
 		Archivo archivoAtracciones = new Archivo("AtraccionesTest");
-		Map<String, Atraccion> resultadoObtenido = archivoAtracciones.leerArchivoAtraccion(Archivo.RUTA_ARCHIVOS_TESTS_ENTRADA);
-		
+		Map<String, Atraccion> resultadoObtenido = archivoAtracciones
+				.leerArchivoAtraccion(Archivo.RUTA_ARCHIVOS_TESTS_ENTRADA);
+
 		Map<String, Atraccion> resultadoEsperado = new HashMap<>();
 		resultadoEsperado.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
-		resultadoEsperado.put("BodegasChandon",new Atraccion("BodegasChandon", 4100, 3, 20, TipoDeAtraccion.DEGUSTACION));
+		resultadoEsperado.put("BodegasChandon",
+				new Atraccion("BodegasChandon", 4100, 3, 20, TipoDeAtraccion.DEGUSTACION));
 		resultadoEsperado.put("LosCardones", new Atraccion("LosCardones", 3267, 5, 2, TipoDeAtraccion.PAISAJE));
 
 		assertEquals(resultadoEsperado, resultadoObtenido);
@@ -72,20 +74,21 @@ public class FuncionalidadesPaquetesTest {
 
 	@Test
 	public void queLeeArchivoPromociones() {
-		Map<String, Atraccion> mapaAtracciones = new HashMap<>();
-		mapaAtracciones.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
-		mapaAtracciones.put("Rafting", new Atraccion("Rafting", 900, 1, 10, TipoDeAtraccion.AVENTURA));
-		mapaAtracciones.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
+		Map<String, Atraccion> atraccionesObtenidas = new HashMap<>();
+		atraccionesObtenidas.put("Trekking", new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA));
+		atraccionesObtenidas.put("Rafting", new Atraccion("Rafting", 900, 1, 10, TipoDeAtraccion.AVENTURA));
+		atraccionesObtenidas.put("Senderismo", new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA));
 
-		Atraccion[] atracciones = { new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA),
+		Atraccion[] atraccionesEsperadas = { new Atraccion("Trekking", 500, 3, 5, TipoDeAtraccion.AVENTURA),
 				new Atraccion("Rafting", 900, 1, 10, TipoDeAtraccion.AVENTURA),
 				new Atraccion("Senderismo", 1300, 5.5, 6, TipoDeAtraccion.AVENTURA) };
 
 		Archivo archivoPromociones = new Archivo("PromocionesTest");
-		List<Promocion> resultadoObtenido = archivoPromociones.leerArchivoPromocion(mapaAtracciones,Archivo.RUTA_ARCHIVOS_TESTS_ENTRADA);
+		List<Promocion> resultadoObtenido = archivoPromociones.leerArchivoPromocion(atraccionesObtenidas,
+				Archivo.RUTA_ARCHIVOS_TESTS_ENTRADA);
 
 		List<Promocion> resultadoEsperado = new ArrayList<>();
-		resultadoEsperado.add(new Absoluta(TipoDeAtraccion.AVENTURA, atracciones, TipoDePromocion.ABSOLUTA));
+		resultadoEsperado.add(new Absoluta(TipoDeAtraccion.AVENTURA, atraccionesEsperadas, TipoDePromocion.ABSOLUTA));
 
 		assertEquals(resultadoEsperado, resultadoObtenido);
 	}

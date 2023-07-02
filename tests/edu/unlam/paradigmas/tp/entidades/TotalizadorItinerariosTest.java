@@ -115,10 +115,12 @@ public class TotalizadorItinerariosTest {
 		List<Itinerario> itinerarios = new ArrayList<>();
 		itinerarios.add(itinerario);
 		Archivo archivo = new Archivo("itinerarioGeneradoTest");
-		archivo.crearArchivoItinerario(itinerarios,Archivo.RUTA_ARCHIVOS_TESTS_SALIDA);
+		archivo.crearArchivoItinerario(itinerarios, Archivo.RUTA_ARCHIVOS_TESTS_SALIDA);
 		try {
-			byte[] archivoGeneradoTest = Files.readAllBytes(Paths.get(Archivo.RUTA_ARCHIVOS_TESTS_SALIDA+"itinerarioGeneradoTest.out"));
-			byte[] archivoTest = Files.readAllBytes(Paths.get(Archivo.RUTA_ARCHIVOS_TESTS_SALIDA+"itinerarioTest.out"));
+			byte[] archivoGeneradoTest = Files
+					.readAllBytes(Paths.get(Archivo.RUTA_ARCHIVOS_TESTS_SALIDA + "itinerarioGeneradoTest.out"));
+			byte[] archivoTest = Files
+					.readAllBytes(Paths.get(Archivo.RUTA_ARCHIVOS_TESTS_SALIDA + "itinerarioTest.out"));
 			Assert.assertArrayEquals(archivoTest, archivoGeneradoTest);
 		} catch (IOException e) {
 			Assert.fail();
