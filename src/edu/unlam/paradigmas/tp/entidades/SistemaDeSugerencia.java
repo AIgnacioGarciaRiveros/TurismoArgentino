@@ -19,12 +19,12 @@ public class SistemaDeSugerencia {
 
 		Archivo archivoPromocion = new Archivo("Promociones");
 		List<Promocion> promociones = new ArrayList<>();
-		promociones = archivoPromocion.leerArchivoPromocion(atracciones,Archivo.RUTA_ARCHIVOS_ENTRADA);
+		promociones = archivoPromocion.leerArchivoPromocion(atracciones, Archivo.RUTA_ARCHIVOS_ENTRADA);
 
 		List<Itinerario> itinerarios = ofertarAUsuarios(usuarios, atracciones, promociones);
 
 		Archivo archivoItinerario = new Archivo("Itinerario");
-		archivoItinerario.crearArchivoItinerario(itinerarios,Archivo.RUTA_ARCHIVOS_SALIDA);
+		archivoItinerario.crearArchivoItinerario(itinerarios, Archivo.RUTA_ARCHIVOS_SALIDA);
 
 	}
 
@@ -54,8 +54,7 @@ public class SistemaDeSugerencia {
 
 			itinerarios.add(itinerario);
 
-			System.out.println("Resultado de tu compra\n");
-			itinerario.mostrar();
+			interfaz.mostrarItinerario(itinerario);
 		}
 		return itinerarios;
 	}

@@ -132,15 +132,7 @@ public class Archivo {
 		return promociones;
 	}
 
-	public void grabarItinerarioEnArchivo(String nombreArchivo) {
-		try (PrintWriter escritor = new PrintWriter(new FileWriter(nombreArchivo))) {
-
-		} catch (IOException e) {
-			System.err.println("Error al escribir en el archivo: " + e.getMessage());
-		}
-	}
-
-	public void crearArchivoItinerario(List<Itinerario> itinerario,String rutaArchivo) {
+	public void crearArchivoItinerario(List<Itinerario> itinerario, String rutaArchivo) {
 		FileWriter file = null;
 		PrintWriter printWriter = null;
 		try {

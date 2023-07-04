@@ -16,8 +16,8 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
-		Atraccion atraccionObtenida = it.next();
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
+		Atraccion atraccionObtenida = iteradorDeAtracciones.next();
 
 		Assert.assertEquals(atraccion, atraccionObtenida);
 	}
@@ -86,9 +86,9 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccion = new Atraccion("Safari", 1300, 3.5, 0, TipoDeAtraccion.AVENTURA);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Lucas", 12000, 12, TipoDeAtraccion.AVENTURA);
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
 
-		Atraccion atraccionObtenida = it.next();
+		Atraccion atraccionObtenida = iteradorDeAtracciones.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
 	}
@@ -99,9 +99,9 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccion = new Atraccion("Safari", 1300, 3.5, 0, TipoDeAtraccion.PAISAJE);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Juan", 11000, 3, TipoDeAtraccion.PAISAJE);
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
 
-		Atraccion atraccionObtenida = it.next();
+		Atraccion atraccionObtenida = iteradorDeAtracciones.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
 	}
@@ -112,9 +112,9 @@ public class OfertadorAtraccionesTest {
 		Atraccion atraccion = new Atraccion("CataratasDelIguazu", 10000, 4, 10, TipoDeAtraccion.PAISAJE);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Antonio", 4000, 10, TipoDeAtraccion.PAISAJE);
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
 
-		Atraccion atraccionObtenida = it.next();
+		Atraccion atraccionObtenida = iteradorDeAtracciones.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
 	}
@@ -126,9 +126,9 @@ public class OfertadorAtraccionesTest {
 		atraccion.setDisponibilidad(false);
 		atracciones.put(atraccion.getNombre(), atraccion);
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
 
-		Atraccion atraccionObtenida = it.next();
+		Atraccion atraccionObtenida = iteradorDeAtracciones.next();
 
 		Assert.assertNotEquals(atraccion, atraccionObtenida);
 	}
@@ -138,8 +138,8 @@ public class OfertadorAtraccionesTest {
 		Map<String, Atraccion> atracciones = new LinkedHashMap<>();
 		Usuario usuario = new Usuario("Maria", 18500, 9, TipoDeAtraccion.PAISAJE);
 		boolean resultadoEsperado = false;
-		AtraccionIteratorImpl it = new AtraccionIteratorImpl(atracciones, usuario);
-		boolean resultadoObtenido = it.hasNext();
+		AtraccionIteratorImpl iteradorDeAtracciones = new AtraccionIteratorImpl(atracciones, usuario);
+		boolean resultadoObtenido = iteradorDeAtracciones.hasNext();
 
 		Assert.assertEquals(resultadoEsperado, resultadoObtenido);
 	}
